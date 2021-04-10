@@ -1,0 +1,1828 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version="0.91">
+    <channel>
+        <title>Star Wars Combine - Scan of coords 14, 7 at Prakith (-43, 38)</title>
+        <description>scanner output</description>
+        <link>https://www.swcombine.com</link>
+        <lastBuildDate>Tue, 12 May 2020 20:52:47</lastBuildDate>
+        <generator>FeedCreator 1.7.2</generator>
+        <language>en</language>
+        <copyright>Copyright: Star Wars Combine</copyright>
+        <webMaster>webmaster@swcombine.com</webMaster>
+    <date>Year 21 Day 167</date>
+    <cgt>
+                <years>21</years>
+                <days>167</days>
+                <hours>13</hours>
+                <minutes>52</minutes>
+                <seconds>47</seconds>
+    </cgt>
+    <sensorPower>6</sensorPower>
+    <location>
+                <galX>-43</galX>
+                <galY>38</galY>
+                <sysX>19</sysX>
+                <sysY>0</sysY>
+    </location>
+        <item>
+                <name>Academy 51</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>188</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Dragon</name>
+                <typeName>YV-666 Light Freighter</typeName>
+                <entityID>66061</entityID>
+                <entityTypeName>YV-666 Light Freighter</entityTypeName>
+                <hull>1350</hull>
+                <hullMax>1350</hullMax>
+                <shield>1000</shield>
+                <shieldMax>1000</shieldMax>
+                <ionic>650</ionic>
+                <ionicMax>650</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/38/main.jpg</image>
+        </item>
+        <item>
+                <name>[AMC-FHA] Guardian Fleet Defence Fighter #019</name>
+                <typeName>Cloakshape/H Fighter</typeName>
+                <entityID>106907</entityID>
+                <entityTypeName>Cloakshape/H Fighter</entityTypeName>
+                <hull>70</hull>
+                <hullMax>70</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Faceless Hunter Ascendancy</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>http://custom.swcombine.com/static/2/106/34-211217-1562884232-small.png</image>
+        </item>
+        <item>
+                <name>Longprobe #1</name>
+                <typeName>BTL-A4 Y-wing Longprobe</typeName>
+                <entityID>107409</entityID>
+                <entityTypeName>BTL-A4 Y-wing Longprobe</entityTypeName>
+                <hull>100</hull>
+                <hullMax>100</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Ted Winner</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/111/main.jpg</image>
+        </item>
+        <item>
+                <name>Christmas Raffle 2017</name>
+                <typeName>Cloakshape/H Fighter</typeName>
+                <entityID>108045</entityID>
+                <entityTypeName>Cloakshape/H Fighter</entityTypeName>
+                <hull>70</hull>
+                <hullMax>70</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Mandalore</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/106/main.jpg</image>
+        </item>
+        <item>
+                <name>Gift from Frezt</name>
+                <typeName>N-1 Starfighter</typeName>
+                <entityID>110375</entityID>
+                <entityTypeName>N-1 Starfighter</entityTypeName>
+                <hull>40</hull>
+                <hullMax>40</hullMax>
+                <shield>20</shield>
+                <shieldMax>20</shieldMax>
+                <ionic>10</ionic>
+                <ionicMax>10</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Ydoc Pershire</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/57/main.jpg</image>
+        </item>
+        <item>
+                <name>Gift from Frezt</name>
+                <typeName>N-1 Starfighter</typeName>
+                <entityID>110432</entityID>
+                <entityTypeName>N-1 Starfighter</entityTypeName>
+                <hull>40</hull>
+                <hullMax>40</hullMax>
+                <shield>20</shield>
+                <shieldMax>20</shieldMax>
+                <ionic>10</ionic>
+                <ionicMax>10</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Jake Blackstone</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/57/main.jpg</image>
+        </item>
+        <item>
+                <name>Gift from Frezt</name>
+                <typeName>N-1 Starfighter</typeName>
+                <entityID>110460</entityID>
+                <entityTypeName>N-1 Starfighter</entityTypeName>
+                <hull>40</hull>
+                <hullMax>40</hullMax>
+                <shield>20</shield>
+                <shieldMax>20</shieldMax>
+                <ionic>10</ionic>
+                <ionicMax>10</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Stack Soto</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/57/main.jpg</image>
+        </item>
+        <item>
+                <name>Firefly Two</name>
+                <typeName>DX-9 Dropship</typeName>
+                <entityID>122643</entityID>
+                <entityTypeName>DX-9 Dropship</entityTypeName>
+                <hull>80</hull>
+                <hullMax>80</hullMax>
+                <shield>60</shield>
+                <shieldMax>60</shieldMax>
+                <ionic>30</ionic>
+                <ionicMax>30</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>http://img.swcombine.com/custom/datacards/6435_main.png</image>
+        </item>
+        <item>
+                <name>[Loan] #3</name>
+                <typeName>GR-75 Medium Transport</typeName>
+                <entityID>122775</entityID>
+                <entityTypeName>GR-75 Medium Transport</entityTypeName>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>450</shield>
+                <shieldMax>450</shieldMax>
+                <ionic>280</ionic>
+                <ionicMax>280</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/31/main.jpg</image>
+        </item>
+        <item>
+                <name>[Loan] #4</name>
+                <typeName>GR-75 Medium Transport</typeName>
+                <entityID>122777</entityID>
+                <entityTypeName>GR-75 Medium Transport</entityTypeName>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>450</shield>
+                <shieldMax>450</shieldMax>
+                <ionic>280</ionic>
+                <ionicMax>280</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/31/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>128682</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>128683</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>128684</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132096</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132097</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132098</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132099</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132100</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>BTL-S3 Y-Wing Starfighter</name>
+                <typeName>BTL-S3 Y-wing Starfighter</typeName>
+                <entityID>132101</entityID>
+                <entityTypeName>BTL-S3 Y-wing Starfighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>25</ionic>
+                <ionicMax>25</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zann Consortium</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/27/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135256</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135333</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135338</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135340</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135351</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135353</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135385</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>135502</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>136800</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>136810</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>RSA Delta 1</name>
+                <typeName>Delta-class JV-7 Escort Shuttle</typeName>
+                <entityID>136849</entityID>
+                <entityTypeName>Delta-class JV-7 Escort Shuttle</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rogue Squadron</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/23/main.jpg</image>
+        </item>
+        <item>
+                <name>Lightning 01</name>
+                <typeName>Eta-2 Actis-class Light Interceptor</typeName>
+                <entityID>146177</entityID>
+                <entityTypeName>Eta-2 Actis-class Light Interceptor</entityTypeName>
+                <hull>35</hull>
+                <hullMax>35</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Keram McDlanar</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/140/main.jpg</image>
+        </item>
+        <item>
+                <name>Lightning 02</name>
+                <typeName>Eta-2 Actis-class Light Interceptor</typeName>
+                <entityID>146178</entityID>
+                <entityTypeName>Eta-2 Actis-class Light Interceptor</entityTypeName>
+                <hull>35</hull>
+                <hullMax>35</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Keram McDlanar</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/140/main.jpg</image>
+        </item>
+        <item>
+                <name>Lightning 03</name>
+                <typeName>Eta-2 Actis-class Light Interceptor</typeName>
+                <entityID>146179</entityID>
+                <entityTypeName>Eta-2 Actis-class Light Interceptor</entityTypeName>
+                <hull>35</hull>
+                <hullMax>35</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Keram McDlanar</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/140/main.jpg</image>
+        </item>
+        <item>
+                <name>Eloquent</name>
+                <typeName>Modular Taskforce Cruiser</typeName>
+                <entityID>147244</entityID>
+                <entityTypeName>Modular Taskforce Cruiser</entityTypeName>
+                <hull>5000</hull>
+                <hullMax>5000</hullMax>
+                <shield>1500</shield>
+                <shieldMax>1500</shieldMax>
+                <ionic>1000</ionic>
+                <ionicMax>1000</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/75/main.jpg</image>
+        </item>
+        <item>
+                <name>Tal'kaan Mist</name>
+                <typeName>Gozanti-class Cruiser</typeName>
+                <entityID>147668</entityID>
+                <entityTypeName>Gozanti-class Cruiser</entityTypeName>
+                <hull>300</hull>
+                <hullMax>300</hullMax>
+                <shield>200</shield>
+                <shieldMax>200</shieldMax>
+                <ionic>100</ionic>
+                <ionicMax>100</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Alissma</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/141/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 2</name>
+                <typeName>Y-TIE Ugly</typeName>
+                <entityID>151110</entityID>
+                <entityTypeName>Y-TIE Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Isis Demala</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/29/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 4</name>
+                <typeName>Y-TIE Ugly</typeName>
+                <entityID>151111</entityID>
+                <entityTypeName>Y-TIE Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Isis Demala</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/29/main.jpg</image>
+        </item>
+        <item>
+                <name>Alacrity 02</name>
+                <typeName>YT-510</typeName>
+                <entityID>151262</entityID>
+                <entityTypeName>YT-510</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>54</ionic>
+                <ionicMax>54</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/43/main.jpg</image>
+        </item>
+        <item>
+                <name>TIE-Wing for Sale 8</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>152953</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>http://img.swcombine.com/custom/datacards/599639_main.png</image>
+        </item>
+        <item>
+                <name>Academy 11</name>
+                <typeName>Y-TIE Ugly</typeName>
+                <entityID>153834</entityID>
+                <entityTypeName>Y-TIE Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Isis Demala</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/29/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 3</name>
+                <typeName>Y-TIE Ugly</typeName>
+                <entityID>153843</entityID>
+                <entityTypeName>Y-TIE Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Isis Demala</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/29/main.jpg</image>
+        </item>
+        <item>
+                <name>TIE-Wing for Sale 7</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>154757</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>http://img.swcombine.com/custom/datacards/599639_main.png</image>
+        </item>
+        <item>
+                <name>TIE-Wing for Sale 8</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>154758</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>http://img.swcombine.com/custom/datacards/599639_main.png</image>
+        </item>
+        <item>
+                <name>TIE-Wing for Sale 9</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>154759</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>http://img.swcombine.com/custom/datacards/599639_main.png</image>
+        </item>
+        <item>
+                <name>Claw</name>
+                <typeName>Eta-2 Actis-class Light Interceptor</typeName>
+                <entityID>170614</entityID>
+                <entityTypeName>Eta-2 Actis-class Light Interceptor</entityTypeName>
+                <hull>35</hull>
+                <hullMax>35</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Havoc Suzigan</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/140/main.jpg</image>
+        </item>
+        <item>
+                <name>Shuttle #27</name>
+                <typeName>GRZ-6B Wrecker</typeName>
+                <entityID>174304</entityID>
+                <entityTypeName>GRZ-6B Wrecker</entityTypeName>
+                <hull>80</hull>
+                <hullMax>80</hullMax>
+                <shield>60</shield>
+                <shieldMax>60</shieldMax>
+                <ionic>30</ionic>
+                <ionicMax>30</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/120/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #1</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177236</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #2</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177237</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #3</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177238</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #4</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177239</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #5</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177240</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #6</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177241</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #7</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177242</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #8</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177243</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #9</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177244</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #10</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177245</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Drudin #11</name>
+                <typeName>TIE-wing Ugly</typeName>
+                <entityID>177246</entityID>
+                <entityTypeName>TIE-wing Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>8</ionic>
+                <ionicMax>8</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eidola Pirates</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/47/main.jpg</image>
+        </item>
+        <item>
+                <name>Ascendant</name>
+                <typeName>Victory I-class Star Destroyer</typeName>
+                <entityID>204729</entityID>
+                <entityTypeName>Victory I-class Star Destroyer</entityTypeName>
+                <hull>5600</hull>
+                <hullMax>5600</hullMax>
+                <shield>4400</shield>
+                <shieldMax>4400</shieldMax>
+                <ionic>2800</ionic>
+                <ionicMax>2800</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/1/main.jpg</image>
+        </item>
+        <item>
+                <name>Immortal Triumph</name>
+                <typeName>Victory I-class Star Destroyer</typeName>
+                <entityID>207489</entityID>
+                <entityTypeName>Victory I-class Star Destroyer</entityTypeName>
+                <hull>5600</hull>
+                <hullMax>5600</hullMax>
+                <shield>4400</shield>
+                <shieldMax>4400</shieldMax>
+                <ionic>2800</ionic>
+                <ionicMax>2800</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/1/main.jpg</image>
+        </item>
+        <item>
+                <name>[CEC] YT-510 Mike</name>
+                <typeName>YT-510</typeName>
+                <entityID>231762</entityID>
+                <entityTypeName>YT-510</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>54</ionic>
+                <ionicMax>54</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Corellian Engineering Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/43/main.jpg</image>
+        </item>
+        <item>
+                <name>Ragnostic (A.S.)</name>
+                <typeName>Y-TIE Ugly</typeName>
+                <entityID>244037</entityID>
+                <entityTypeName>Y-TIE Ugly</entityTypeName>
+                <hull>30</hull>
+                <hullMax>30</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Chaotic Defense Systems</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/29/main.jpg</image>
+        </item>
+        <item>
+                <name>Sprint</name>
+                <typeName>Sprint-class Rescue Craft</typeName>
+                <entityID>255049</entityID>
+                <entityTypeName>Sprint-class Rescue Craft</entityTypeName>
+                <hull>200</hull>
+                <hullMax>200</hullMax>
+                <shield>50</shield>
+                <shieldMax>50</shieldMax>
+                <ionic>50</ionic>
+                <ionicMax>50</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Marcas Murdoch</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/148/34-214283-1505845820-small.png</image>
+        </item>
+        <item>
+                <name>Event Horizon</name>
+                <typeName>Simiyiar-class Light Freighter</typeName>
+                <entityID>258484</entityID>
+                <entityTypeName>Simiyiar-class Light Freighter</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>165</shield>
+                <shieldMax>165</shieldMax>
+                <ionic>85</ionic>
+                <ionicMax>85</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Fi Wilson</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/171/main.jpg</image>
+        </item>
+        <item>
+                <name>Terbium</name>
+                <typeName>Kom'rk-class Transport</typeName>
+                <entityID>274201</entityID>
+                <entityTypeName>Kom'rk-class Transport</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>110</shield>
+                <shieldMax>110</shieldMax>
+                <ionic>50</ionic>
+                <ionicMax>50</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Togan Jano</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/187/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 21</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302095</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 33</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302108</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 34</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302114</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 25</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302135</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 36</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302142</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 17</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302146</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 48</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302155</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Academy 09</name>
+                <typeName>Lambda-class T-4a Shuttle</typeName>
+                <entityID>302170</entityID>
+                <entityTypeName>Lambda-class T-4a Shuttle</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>40</shield>
+                <shieldMax>40</shieldMax>
+                <ionic>20</ionic>
+                <ionicMax>20</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/20/main.jpg</image>
+        </item>
+        <item>
+                <name>Vaermina</name>
+                <typeName>Horizon-class Star Yacht</typeName>
+                <entityID>321892</entityID>
+                <entityTypeName>Horizon-class Star Yacht</entityTypeName>
+                <hull>140</hull>
+                <hullMax>140</hullMax>
+                <shield>75</shield>
+                <shieldMax>75</shieldMax>
+                <ionic>110</ionic>
+                <ionicMax>110</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Kal Eysar</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/183/34-32626-1402131665-small.png</image>
+        </item>
+        <item>
+                <name>Catechizor</name>
+                <typeName>Imperial I-class Star Destroyer</typeName>
+                <entityID>336054</entityID>
+                <entityTypeName>Imperial I-class Star Destroyer</entityTypeName>
+                <hull>10000</hull>
+                <hullMax>10000</hullMax>
+                <shield>8000</shield>
+                <shieldMax>8000</shieldMax>
+                <ionic>5000</ionic>
+                <ionicMax>5000</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/134/main.jpg</image>
+        </item>
+        <item>
+                <name>Tuesday Auction</name>
+                <typeName>Foray-class Blockade Runner</typeName>
+                <entityID>339646</entityID>
+                <entityTypeName>Foray-class Blockade Runner</entityTypeName>
+                <hull>850</hull>
+                <hullMax>850</hullMax>
+                <shield>750</shield>
+                <shieldMax>750</shieldMax>
+                <ionic>300</ionic>
+                <ionicMax>300</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Coleman Rendar</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>http://custom.swcombine.com/static/2/191/34-12689-1504585380-small.png</image>
+        </item>
+        <item>
+                <name>Successor</name>
+                <typeName>EF76 Nebulon-B Escort Frigate</typeName>
+                <entityID>346904</entityID>
+                <entityTypeName>EF76 Nebulon-B Escort Frigate</entityTypeName>
+                <hull>3500</hull>
+                <hullMax>3500</hullMax>
+                <shield>3000</shield>
+                <shieldMax>3000</shieldMax>
+                <ionic>1700</ionic>
+                <ionicMax>1700</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/13/34-96496-1547779593-small.png</image>
+        </item>
+        <item>
+                <name>Corona</name>
+                <typeName>Corona-class Frigate</typeName>
+                <entityID>374051</entityID>
+                <entityTypeName>Corona-class Frigate</entityTypeName>
+                <hull>3750</hull>
+                <hullMax>3750</hullMax>
+                <shield>3000</shield>
+                <shieldMax>3000</shieldMax>
+                <ionic>1600</ionic>
+                <ionicMax>1600</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Tyler Struan</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/215/main.jpg</image>
+        </item>
+        <item>
+                <name>Eloquent Escape Pod</name>
+                <typeName>Escape Pod</typeName>
+                <entityID>402696</entityID>
+                <entityTypeName>Escape Pod</entityTypeName>
+                <hull>5</hull>
+                <hullMax>5</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Galactic Empire</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/62/main.jpg</image>
+        </item>
+        <item>
+                <name>Johnson Estate</name>
+                <typeName>Arquitens-class Light Cruiser</typeName>
+                <entityID>448209</entityID>
+                <entityTypeName>Arquitens-class Light Cruiser</entityTypeName>
+                <hull>2100</hull>
+                <hullMax>2100</hullMax>
+                <shield>2500</shield>
+                <shieldMax>2500</shieldMax>
+                <ionic>900</ionic>
+                <ionicMax>900</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Alexander Johnson</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/181/34-5935-1437766518-small.png</image>
+        </item>
+        <item>
+                <name>Harlequin</name>
+                <typeName>YT-510</typeName>
+                <entityID>472845</entityID>
+                <entityTypeName>YT-510</entityTypeName>
+                <hull>120</hull>
+                <hullMax>120</hullMax>
+                <shield>100</shield>
+                <shieldMax>100</shieldMax>
+                <ionic>54</ionic>
+                <ionicMax>54</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Cort Danakar</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/43/34-186395-1391636219-small.png</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #03</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>474991</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #04</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>474992</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #05</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>474993</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #06</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>474994</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #07</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478140</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #08</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478141</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #09</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478142</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #10</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478143</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #11</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478144</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Magnaguard Courier #12</name>
+                <typeName>T-wing Interceptor</typeName>
+                <entityID>478145</entityID>
+                <entityTypeName>T-wing Interceptor</entityTypeName>
+                <hull>60</hull>
+                <hullMax>60</hullMax>
+                <shield>30</shield>
+                <shieldMax>30</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/101/main.jpg</image>
+        </item>
+        <item>
+                <name>Gstar</name>
+                <typeName>G-type Light Shuttle</typeName>
+                <entityID>495578</entityID>
+                <entityTypeName>G-type Light Shuttle</entityTypeName>
+                <hull>100</hull>
+                <hullMax>100</hullMax>
+                <shield>50</shield>
+                <shieldMax>50</shieldMax>
+                <ionic>60</ionic>
+                <ionicMax>60</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Jacen Cloudstrike</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/220/main.jpg</image>
+        </item>
+        <item>
+                <name>[MM] Welcome Centre</name>
+                <typeName>Hammerhead-class Cruiser</typeName>
+                <entityID>512944</entityID>
+                <entityTypeName>Hammerhead-class Cruiser</entityTypeName>
+                <hull>2300</hull>
+                <hullMax>2300</hullMax>
+                <shield>2300</shield>
+                <shieldMax>2300</shieldMax>
+                <ionic>700</ionic>
+                <ionicMax>700</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Droid Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/163/main.jpg</image>
+        </item>
+        <item>
+                <name>[IM] Welcome Centre</name>
+                <typeName>Hammerhead-class Cruiser</typeName>
+                <entityID>514351</entityID>
+                <entityTypeName>Hammerhead-class Cruiser</entityTypeName>
+                <hull>2300</hull>
+                <hullMax>2300</hullMax>
+                <shield>2300</shield>
+                <shieldMax>2300</shieldMax>
+                <ionic>700</ionic>
+                <ionicMax>700</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Munitions</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/163/main.jpg</image>
+        </item>
+        <item>
+                <name>[CEC] Welcome Centre</name>
+                <typeName>Hammerhead-class Cruiser</typeName>
+                <entityID>514352</entityID>
+                <entityTypeName>Hammerhead-class Cruiser</entityTypeName>
+                <hull>2300</hull>
+                <hullMax>2300</hullMax>
+                <shield>2300</shield>
+                <shieldMax>2300</shieldMax>
+                <ionic>700</ionic>
+                <ionicMax>700</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Corellian Engineering Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/163/main.jpg</image>
+        </item>
+        <item>
+                <name>[IMC] Welcome Centre</name>
+                <typeName>Hammerhead-class Cruiser</typeName>
+                <entityID>514626</entityID>
+                <entityTypeName>Hammerhead-class Cruiser</entityTypeName>
+                <hull>2300</hull>
+                <hullMax>2300</hullMax>
+                <shield>2300</shield>
+                <shieldMax>2300</shieldMax>
+                <ionic>700</ionic>
+                <ionicMax>700</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Imperial Mining Corporation</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/163/main.jpg</image>
+        </item>
+        <item>
+                <name>Darcus Vaygr's Personal Transport</name>
+                <typeName>Eta-5 Interceptor</typeName>
+                <entityID>731777</entityID>
+                <entityTypeName>Eta-5 Interceptor</entityTypeName>
+                <hull>40</hull>
+                <hullMax>40</hullMax>
+                <shield>10</shield>
+                <shieldMax>10</shieldMax>
+                <ionic>10</ionic>
+                <ionicMax>10</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Darcus Vaygr</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/216/main.jpg</image>
+        </item>
+        <item>
+                <name>Feline's Fury</name>
+                <typeName>RZ-68 Troop Transport</typeName>
+                <entityID>809128</entityID>
+                <entityTypeName>RZ-68 Troop Transport</entityTypeName>
+                <hull>70</hull>
+                <hullMax>70</hullMax>
+                <shield>80</shield>
+                <shieldMax>80</shieldMax>
+                <ionic>40</ionic>
+                <ionicMax>40</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zaryna Malone</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/235/main.jpg</image>
+        </item>
+        <item>
+                <name>Personal Transport</name>
+                <typeName>Decadence-Class Pleasure Yacht </typeName>
+                <entityID>920482</entityID>
+                <entityTypeName>Decadence-Class Pleasure Yacht </entityTypeName>
+                <hull>180</hull>
+                <hullMax>180</hullMax>
+                <shield>90</shield>
+                <shieldMax>90</shieldMax>
+                <ionic>50</ionic>
+                <ionicMax>50</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>The Hyporian Commonwealth</ownerName>
+                <iffStatus>Enemy</iffStatus>
+                <image>https://img.swcombine.com//ships/234/main.jpg</image>
+        </item>
+        <item>
+                <name>KOW Clearview</name>
+                <typeName>RZ-68 Troop Transport</typeName>
+                <entityID>1032553</entityID>
+                <entityTypeName>RZ-68 Troop Transport</entityTypeName>
+                <hull>70</hull>
+                <hullMax>70</hullMax>
+                <shield>80</shield>
+                <shieldMax>80</shieldMax>
+                <ionic>40</ionic>
+                <ionicMax>40</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Diovau Kilmerr</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/235/main.jpg</image>
+        </item>
+    </channel>
+</rss>

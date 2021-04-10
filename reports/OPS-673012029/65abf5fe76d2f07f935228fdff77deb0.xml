@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version="0.91">
+    <channel>
+        <title>Star Wars Combine - Scan of deepspace coords (283, -132)</title>
+        <description>scanner output</description>
+        <link>https://www.swcombine.com</link>
+        <lastBuildDate>Tue, 31 Mar 2020 18:01:03</lastBuildDate>
+        <generator>FeedCreator 1.7.2</generator>
+        <language>en</language>
+        <copyright>Copyright: Star Wars Combine</copyright>
+        <webMaster>webmaster@swcombine.com</webMaster>
+    <date>Year 21 Day 125</date>
+    <cgt>
+                <years>21</years>
+                <days>125</days>
+                <hours>11</hours>
+                <minutes>1</minutes>
+                <seconds>3</seconds>
+    </cgt>
+    <sensorPower>2</sensorPower>
+    <location>
+                <galX>283</galX>
+                <galY>-132</galY>
+                <sysX>19</sysX>
+                <sysY>19</sysY>
+    </location>
+        <item>
+                <name>MedNeb #004 SCRC 1</name>
+                <typeName>Sprint-class Rescue Craft</typeName>
+                <entityID>418103</entityID>
+                <entityTypeName>Sprint-class Rescue Craft</entityTypeName>
+                <hull>200</hull>
+                <hullMax>200</hullMax>
+                <shield>50</shield>
+                <shieldMax>50</shieldMax>
+                <ionic>50</ionic>
+                <ionicMax>50</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <x>19</x>
+                <y>19</y>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Mando`ade</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/148/34-34357-1461084750-small.png</image>
+        </item>
+        <item>
+                <name>Iviin'yc Ruus'uliik  #1</name>
+                <typeName>Action VI Transport</typeName>
+                <entityID>179119</entityID>
+                <entityTypeName>Action VI Transport</entityTypeName>
+                <hull>400</hull>
+                <hullMax>400</hullMax>
+                <shield>400</shield>
+                <shieldMax>400</shieldMax>
+                <ionic>135</ionic>
+                <ionicMax>135</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <x>19</x>
+                <y>19</y>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Mando`ade</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>http://custom.swcombine.com/static/2/71/34-34357-1459742933-small.png</image>
+        </item>
+        <item>
+                <name>Orange box</name>
+                <typeName>Wayfarer-class Medium Transport</typeName>
+                <entityID>760398</entityID>
+                <entityTypeName>Wayfarer-class Medium Transport</entityTypeName>
+                <hull>300</hull>
+                <hullMax>300</hullMax>
+                <shield>140</shield>
+                <shieldMax>140</shieldMax>
+                <ionic>30</ionic>
+                <ionicMax>30</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <x>19</x>
+                <y>19</y>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Ivo Sorrest</ownerName>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/222/main.jpg</image>
+        </item>
+        <item>
+                <name>Outpost #6</name>
+                <typeName>Luxury Space Colony</typeName>
+                <entityID>3774</entityID>
+                <entityTypeName>Luxury Space Colony</entityTypeName>
+                <hull>1300</hull>
+                <hullMax>1300</hullMax>
+                <shield>700</shield>
+                <shieldMax>700</shieldMax>
+                <ionic>585</ionic>
+                <ionicMax>585</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <x>19</x>
+                <y>10</y>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Feth Ophoxi</ownerName>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//stations/23/main.jpg</image>
+        </item>
+    </channel>
+</rss>
