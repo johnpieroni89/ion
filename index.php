@@ -1,9 +1,10 @@
 <?php 
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/acct/check.php");
+	include("autoload.php");
+	global $db;
+	global $site;
+	global $session;
+	global $account;
+	$session->check_login();
 ?>
 
 	<?php include("assets/php/_head.php"); ?>
@@ -40,12 +41,12 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
                         <!-- Example Block -->
                         <div class="block" style="min-height:700px;">
                             <!-- Example Title -->
                             <div class="block-title">
-                                <h2><?php echo $_SESSION['site_description']; ?></h2>
+                                <h2><?php echo $site->description; ?></h2>
                             </div>
                             <!-- Example Content -->
 							<div class="block-content col-sm-12">

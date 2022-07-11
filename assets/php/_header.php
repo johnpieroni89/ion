@@ -26,7 +26,7 @@
 		</li>
 
 		<!-- Notification Dropdown -->
-		<?php if($_SESSION['site_account_required'] == 0){ include("_notification.php");} ?>
+		<?php if($site->account_required == 0){ include("_notification.php");} ?>
 		
 		<!-- User Dropdown -->
 		<?php //if($_SESSION['site_account_required'] == 1){ include("_userpanel.php");}

@@ -12,15 +12,11 @@
 			<div class="col-sm-9">
 				<select class="form-control" id="inputAddUsergroup" name="inputAddUsergroup">
 				<?php
-					$db = new database;
-					$db->connect();
 					$query = mysqli_query($db->connection,"SELECT usergroup_id, usergroup_name FROM usergroups ORDER BY usergroup_name ASC");
 
 					while($data = mysqli_fetch_assoc($query)){
 						echo "<option value=\"".$data['usergroup_id']."\">".ucwords($data['usergroup_name'])."</option>";
 					}
-					$db->disconnect();
-					unset($db);
 				?>
 				</select>
 			</div>
@@ -32,8 +28,6 @@
 		
 		<table class="table table-bordered table-striped table-responsive table-hover"><tr><th>Usergroup ID</th><th>Usergroup Name</th><th>Action</th></tr>
 			<?php
-				$db = new database;
-				$db->connect();
 				$query = mysqli_query($db->connection,"SELECT reporting_needs_coi_usergroups.usergroup_id, usergroup_name FROM reporting_needs_coi_usergroups LEFT JOIN usergroups ON reporting_needs_coi_usergroups.usergroup_id = usergroups.usergroup_id WHERE need_id = '".$reportData['need_id']."' ORDER BY usergroup_name ASC");
 
 				while($data = mysqli_fetch_assoc($query)){
@@ -57,15 +51,11 @@
 			<div class="col-sm-9">
 				<select class="form-control" id="inputAddUser" name="inputAddUser">
 				<?php
-					$db = new database;
-					$db->connect();
 					$query = mysqli_query($db->connection,"SELECT user_id, username FROM users ORDER BY username ASC");
 
 					while($data = mysqli_fetch_assoc($query)){
 						echo "<option value=\"".$data['user_id']."\">".ucwords($data['username'])."</option>";
 					}
-					$db->disconnect();
-					unset($db);
 				?>
 				</select>
 			</div>
@@ -77,8 +67,6 @@
 		
 		<table class="table table-bordered table-striped table-responsive table-hover"><tr><th>User ID</th><th>Username</th><th>Action</th></tr>
 			<?php
-				$db = new database;
-				$db->connect();
 				$query = mysqli_query($db->connection,"SELECT reporting_needs_coi_users.user_id, username FROM reporting_needs_coi_users LEFT JOIN users ON reporting_needs_coi_users.user_id = users.user_id WHERE need_id = '".$reportData['need_id']."' ORDER BY username ASC");
 
 				while($data = mysqli_fetch_assoc($query)){

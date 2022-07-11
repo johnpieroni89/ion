@@ -2,8 +2,6 @@
 
 	if($results_count != 0){
 		echo "<h2><center><b>Planet Search</b></center></h2>";
-		$db = new database;
-		$db->connect();
 		$pages = new Paginator($results_count,9);
 		echo '<div class="col-sm-12 text-right hidden-print">';
 		echo "<span class=\"form-inline\">".$pages->display_jump_menu().$pages->display_items_per_page()."</span>";

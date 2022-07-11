@@ -1,16 +1,14 @@
 <?php 
-    error_reporting(0);
-	include("../assets/php/database.php");
-    include("../assets/php/session.php");
-    include("../assets/php/functions.php");
-    include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 
     if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
 	if(isset($_GET['d'])){
-		$db = new database;
-        $db->connect();
-		
 		$delete_id = mysqli_real_escape_string($db->connection,$_GET['d']);
 		mysqli_query($db->connection, "DELETE FROM usergroups WHERE usergroup_id = '$delete_id'");
 		mysqli_query($db->connection, "DELETE FROM usergroups_members WHERE usergroup_id = '$delete_id'");
@@ -56,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if(isset($alert)){echo $alert;} ?>
+                        <?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -68,9 +66,6 @@
                                 </form>
                             </div>
                                 <?php
-                                    $db = new database;
-                                    $db->connect();
-
                                     $groups = mysqli_query($db->connection,"SELECT usergroups.*, users.username FROM usergroups LEFT JOIN users ON usergroups.usergroup_moderator = users.user_id ORDER BY usergroup_name");
                                     echo "<table class=\"table table-bordered table-striped table-responsive table-hover\"><tr><th>Usergroup Id</th><th>Usergroup Name</th><th>Moderator</th><th>Usergroup Members</th><th>Edit Usergroup</th></tr>";
                                     while($data = mysqli_fetch_assoc($groups)){

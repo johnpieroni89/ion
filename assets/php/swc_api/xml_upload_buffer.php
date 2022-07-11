@@ -53,7 +53,7 @@ while($row = mysqli_fetch_assoc($query_buffer)){
 	}
 }
 	
-$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$count_new." entities have been added, ".$count_update." entities have been updated, and ".$count_archive." entities have been archived</div>";
+$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$count_new." entities have been added, ".$count_update." entities have been updated, and ".$count_archive." entities have been archived</div>";
 mysqli_query($db->connection,"UPDATE data_signalsanalysis_activity SET added = '$count_new', updated = '$count_update' WHERE id = '$activity_id'");
 $update_log = mysqli_real_escape_string($db->connection, "UPLOAD: ".$count_new." new records, ".$count_update." updated records, and ".$count_archive." records were approved from the buffer <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>");
 mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', '$update_log', '".swc_time(time(),TRUE)["timestamp"]."')");

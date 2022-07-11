@@ -1,7 +1,4 @@
 <?php
-
-$db = new database;
-$db->connect();
 echo "<center><h1><b>Reports</b></h1></center><hr/>";
 
 if($_SESSION['user_privs']['reporting_view'] > 0 || $_SESSION['user_privs']['admin'] != 0){

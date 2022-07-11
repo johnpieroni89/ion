@@ -3,7 +3,7 @@
 	<!-- Sidebar Brand -->
 	<div id="sidebar-brand" class="themed-background">
 		<a href="<?php if(glob("index.php")){echo "index.php";}else{echo "../index.php";} ?>" class="sidebar-title">
-			<!--<i class="fa fa-cube"></i>--><img style="margin-right:10px;" src="<?php if(glob("assets/img/icon48.ico")){ echo "assets/img/icon48.ico";}else{echo "../assets/img/icon48.ico";} ?>"> <span class="sidebar-nav-mini-hide"><?php echo $_SESSION['site_name']; ?></strong></span>
+			<!--<i class="fa fa-cube"></i>--><img style="margin-right:10px;" src="<?php if(glob("assets/img/icon48.ico")){ echo "assets/img/icon48.ico";}else{echo "../assets/img/icon48.ico";} ?>"> <span class="sidebar-nav-mini-hide"><?php echo $site->name; ?></strong></span>
 		</a>
 	</div>
 
@@ -16,8 +16,8 @@
 				<li>
 					<a href="<?php if(glob("index.php")){echo "index.php";}else{echo "../index.php";} ?>" <?php if(basename($_SERVER['PHP_SELF']) == "index.php"){echo "class=\"active\"";} ?>><i class="fas fa-tachometer-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
 				</li>
-				<li>
-					<center><a href="#"><?php $swc_date = swc_time(time(),TRUE); echo "Year ".$swc_date["year"]." Day ".$swc_date["day"]." ".$swc_date["hour"].":".$swc_date["minute"].":".$swc_date["second"];?></a></center>
+				<li style="text-align: center;">
+					<a href="#"><?php $swc_date = swc_time(time(),TRUE); echo "Year ".$swc_date["year"]." Day ".$swc_date["day"]." ".$swc_date["hour"].":".$swc_date["minute"].":".$swc_date["second"];?></a>
 				</li>
 				<li class="sidebar-separator">
 					<i class="fa fa-ellipsis-h"></i>
@@ -66,17 +66,6 @@
 						if($_SESSION['user_privs']['signalsanalysis_search'] != 0 || $_SESSION['user_privs']['signalsanalysis_upload'] != 0 || $_SESSION['user_privs']['signalsanalysis_analytics'] != 0 || $_SESSION['user_privs']['admin'] != 0) {
 							if(basename($_SERVER['PHP_SELF']) == "signalsanalysis.php"){$active = "class=\"active\"";}else{$active = "";}
 							echo "<li><a href=\"".$link."\" title=\"Entity database for querying signals intelligence data\" ".$active."><i class=\"fas fa-broadcast-tower sidebar-nav-icon\"></i>Signals Analysis</a></li>";
-						}
-
-						if(glob("factioncatalog.php")) {
-							$link = "factioncatalog.php";
-						} else {
-							$link = "../factioncatalog.php";
-						}
-
-						if($_SESSION['user_privs']['factioncatalog_general'] != 0 || $_SESSION['user_privs']['admin'] != 0) {
-							if(basename($_SERVER['PHP_SELF']) == "factioncatalog.php"){$active = "class=\"active\"";}else{$active = "";}
-							echo "<li><a href=\"".$link."\" title=\"Faction database for querying all-source intelligence about organizations\" ".$active."><i class=\"fas fa-sitemap sidebar-nav-icon\"></i>Faction Catalog</a></li>";
 						}
 						
 						if(glob("flashnews.php")) {
@@ -129,9 +118,7 @@
 	<!-- Sidebar Extra Info -->
 	<div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
 		<?php
-			$db = new database;
-			$db->connect();
-			if($_SESSION['app_subscription'] == 1 && $_SESSION['user_id']){
+			if($site->app_subscription == 1 && $_SESSION['user_id']){
 				$subscription = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM users_subscription WHERE user_id = '".$_SESSION['user_id']."'"));
 				if($subscription == TRUE){
 					echo '
@@ -162,7 +149,7 @@
 			}
 		?>
 		<div class="text-center">
-			<?php echo $_SESSION['site_footer']; ?>
+			<?php echo $site->footer; ?>
 		</div>
 	</div>
 </div>

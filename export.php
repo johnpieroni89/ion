@@ -1,10 +1,5 @@
 <?php
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	$db = new database;
-	$db->connect();
+	include("autoload.php");
 	
 	$xml = new SimpleXMLElement('<xml/>');
 	$xml->addAttribute("type", "export");

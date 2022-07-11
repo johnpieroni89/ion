@@ -1,10 +1,10 @@
 <?php
-	
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/paginator.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
 	//$db = new database;
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -73,11 +73,7 @@
 							</div>
 							
 							
-							<?php
-								$db = new database;
-								$db->connect();
-								
-								
+							<?php								
 								//mysqli_query($db->connection, "DELETE FROM logs_activities ORDER BY timestamp DESC LIMIT $limit, 100000");
 								
 								if($_GET['view'] == 0 || $_GET['view'] == ""){
@@ -95,8 +91,6 @@
 									echo "<span class=\"form-inline\">".$pages->display_jump_menu().$pages->display_items_per_page()."</span>";
 									echo '</div>';
 									echo '<div class="clearfix"></div>';
-									$db = new database;
-									$db->connect();
 									$limit = $pages->limit_start.','.$pages->limit_end;
 									$query = mysqli_query($db->connection,$search_string." LIMIT ".$limit);
 									
@@ -151,8 +145,6 @@
 									echo "<span class=\"form-inline\">".$pages->display_jump_menu().$pages->display_items_per_page()."</span>";
 									echo '</div>';
 									echo '<div class="clearfix"></div>';
-									$db = new database;
-									$db->connect();
 									$limit = $pages->limit_start.','.$pages->limit_end;
 									$query = mysqli_query($db->connection,$search_string." LIMIT ".$limit);
 									

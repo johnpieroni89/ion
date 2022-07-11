@@ -1,7 +1,4 @@
 <?php
-	$db = new database;
-	$db->connect();
-	
 	if(isset($_POST['search'])){
 		$search = $_POST['search'];
 		$query = "SELECT data_tracking.*, data_signalsanalysis.name AS entity_name, galaxy_sectors.name AS sector_name, galaxy_systems.name AS system_name, galaxy_planets.name AS planet_name FROM data_tracking LEFT JOIN data_signalsanalysis ON data_tracking.entity = data_signalsanalysis.uid LEFT JOIN galaxy_sectors ON data_tracking.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_tracking.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_tracking.planet = galaxy_planets.uid WHERE tracking_id = '$search' OR target LIKE '%$search%' OR source = '$search' OR data_signalsanalysis.name LIKE '%$search%' OR galaxy_sectors.name LIKE '%$search%' OR galaxy_systems.name LIKE '%$search%' OR galaxy_planets.name LIKE '%$search%' ORDER BY timestamp DESC, tracking_id DESC";

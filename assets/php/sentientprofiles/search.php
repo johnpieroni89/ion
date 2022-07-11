@@ -1,8 +1,5 @@
 <?php
 
-$db = new database;
-$db->connect();
-
 if(!empty($search_header)){$header_string = " for ".$search_header;}else{$header_string = "";}
 if($results_count != 0){
 	echo "<center><h1><b>Profiles$header_string</b></h1></center>";

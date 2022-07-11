@@ -1,24 +1,22 @@
 <?php 
-error_reporting(0);
-include("../assets/php/database.php");
-include("../assets/php/session.php");
-include("../assets/php/functions.php");
-include("../assets/php/acct/check.php");
+include("../autoload.php");
+global $db;
+global $site;
+global $session;
+global $account;
+$session->check_login();
 include("../assets/php/_head.php");
 
 if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0 || $_SESSION['user_privs']['admin'] == 1){ header("Location: ../index.php");}
 ?>
 
-<?php  
-    $db = new database;
-    $db->connect();
-    
+<?php    
     if($_POST) {
         $user_id = $_POST['inputUser'];
         $admin = $_POST['inputAdmin'];
         
         if ($user_id == 0) {
-            $alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Please select a user.</div>";
+            $session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Please select a user.</div>";
         } else {
             $user = mysqli_query($db->connection, "SELECT * FROM users WHERE user_id = '$user_id' LIMIT 1");
             $user_data = mysqli_fetch_assoc($user);
@@ -26,7 +24,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0 || $_SE
 
             mysqli_query($db->connection, "UPDATE users_privs SET admin = '$admin' WHERE user_id = '$user_id'");
             mysqli_query($db->connection, "UPDATE users SET refresh = '1' WHERE user_id = '$user_id'");
-            $alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully updated administator status for ".$username.".</div>";
+            $session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully updated administator status for ".$username.".</div>";
         }
     }
 ?>
@@ -67,7 +65,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0 || $_SE
                             </div>
                         </div>
                     </div>
-                    <?php if(isset($alert)){echo $alert;} ?>
+                    <?php if(isset($session->alert)){echo $session->alert;} ?>
 
                     <!-- Block -->
                     <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -83,7 +81,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0 || $_SE
                                         <select class="form-control" id="inputUser" name="inputUser">
                                             <option value="0">-- Select User --</option>
                                             <?php
-                                            $db = new database;
+                                            $db = new Database;
                                             $db->connect();
                                             $query = mysqli_query($db->connection,"SELECT user_id, username FROM users ORDER BY username ASC");
                                             while($data = mysqli_fetch_assoc($query)){

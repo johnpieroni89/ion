@@ -1,7 +1,4 @@
 <?php
-
-$db = new database;
-$db->connect();
 echo "<center><h1><b>Information Needs</b></h1></center><hr/>";
 
 if($_SESSION['user_privs']['reporting_view'] > 0 || $_SESSION['user_privs']['admin'] != 0){
@@ -105,7 +102,6 @@ if($_SESSION['user_privs']['reporting_view'] > 0 || $_SESSION['user_privs']['adm
 }else{
 	echo "<center>No results!</center>";
 }
-
 
 ?>
 

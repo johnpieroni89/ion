@@ -9,8 +9,6 @@
 			<th align=\"center\">Planet Count</th>
 		</tr>
 	";
-	$db = new database;
-	$db->connect();
 	$query = mysqli_query($db->connection,"SELECT COUNT(uid) AS count, governor FROM galaxy_planets WHERE governor != '' GROUP BY governor ORDER BY governor");
 	while($data = mysqli_fetch_assoc($query)){
 		echo "

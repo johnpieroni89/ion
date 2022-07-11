@@ -1,5 +1,4 @@
 <?php
-	
 	echo "
 		<h2><center><b>Magistrate List</b></center></h2>
 		<div class=\"hidden-print\">Note: Click on Column headers for sorting.</div>
@@ -9,8 +8,6 @@
 			<th align=\"center\">Planet Count</th>
 		</tr>
 	";
-	$db = new database;
-	$db->connect();
 	$query = mysqli_query($db->connection,"SELECT COUNT(uid) AS count, magistrate FROM galaxy_planets WHERE magistrate != '' GROUP BY magistrate ORDER BY magistrate");
 	while($data = mysqli_fetch_assoc($query)){
 		echo "
@@ -20,5 +17,4 @@
 			</tr>";
 	}
 	echo "</table>";
-
 ?>

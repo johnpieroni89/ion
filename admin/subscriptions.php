@@ -1,26 +1,24 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(isset($_POST['add_user'])){
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['add_user']);
 		mysqli_query($db->connection, "INSERT INTO users_subscription (user_id) VALUES ('$user_id')");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been enrolled in subscription service.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been enrolled in subscription service.</div>";
 	}elseif(isset($_POST['add_30'])){
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['add_30']);
 		mysqli_query($db->connection, "UPDATE users_subscription SET days = days + 30 WHERE user_id = '$user_id'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been granted 30 days of subscription.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been granted 30 days of subscription.</div>";
 	}elseif(isset($_POST['delete_user'])){
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['delete_user']);
 		mysqli_query($db->connection, "DELETE FROM users_subscription WHERE user_id='$user_id'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been disenrolled from subscription service.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">User has been disenrolled from subscription service.</div>";
 	}
 ?>
 
@@ -60,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -69,9 +67,6 @@
                                 <h2>Subscriptions</h2>
                             </div>
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$users = mysqli_query($db->connection,"SELECT users.*, users_subscription.days FROM users LEFT JOIN users_subscription ON users.user_id = users_subscription.user_id WHERE username LIKE '%".$search."%' OR first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%' OR email LIKE '%".$search."%' ORDER BY username");

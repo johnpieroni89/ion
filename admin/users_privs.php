@@ -1,15 +1,14 @@
 <?php 
-error_reporting(0);
-include("../assets/php/database.php");
-include("../assets/php/session.php");
-include("../assets/php/functions.php");
-include("../assets/php/acct/check.php");
+include("../autoload.php");
+global $db;
+global $site;
+global $session;
+global $account;
+$session->check_login();
 include("../assets/php/_head.php");
 if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 
 if(isset($_GET['user_id']) && $_GET['user_id'] != ""){
-		$db = new database;
-		$db->connect();
 		$user_id = mysqli_real_escape_string($db->connection,$_GET['user_id']);
 		
 		if($_POST){
@@ -35,7 +34,7 @@ if(isset($_GET['user_id']) && $_GET['user_id'] != ""){
 			mysqli_query($db->connection, "UPDATE users_privs SET admin='$admin', sentientprofiles_general='$sentientprofiles_view', sentientprofiles_delete='$sentientprofiles_delete', galaxydata_search='$galaxydata_search', galaxydata_analytics='$galaxydata_analytics', galaxydata_delete='$galaxydata_delete', geolocation='$geolocation', signalsanalysis_search='$signalsanalysis_search', signalsanalysis_upload='$signalsanalysis_upload', signalsanalysis_export='$signalsanalysis_export', signalsanalysis_analytics='$signalsanalysis_analytics', signalsanalysis_delete='$signalsanalysis_delete', factioncatalog_general='$factioncatalog_view', factioncatalog_delete='$factioncatalog_delete', reporting_publish='$reporting_publish', reporting_view='$reporting_view', reporting_delete='$reporting_delete', transactions='$transactions', flashnews='$flashnews' WHERE user_id = '$user_id'");
 			mysqli_query($db->connection, "UPDATE users SET refresh = '1' WHERE user_id = '$user_id'");
 			
-			$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully modified the account privileges</div>";
+			$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully modified the account privileges</div>";
 		}
 		
 		$user = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM users LEFT JOIN users_privs ON users.user_id = users_privs.user_id WHERE users.user_id = '$user_id'"));
@@ -82,7 +81,7 @@ if(isset($_GET['user_id']) && $_GET['user_id'] != ""){
                             </div>
                         </div>
                     </div>
-                    <?php if(isset($alert)){echo $alert;} ?>
+                    <?php if(isset($session->alert)){echo $session->alert;} ?>
 
                     <!-- Block -->
                     <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">

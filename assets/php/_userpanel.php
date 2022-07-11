@@ -1,6 +1,6 @@
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-				<img src="<?php echo $_SESSION['user_avatar'];?>" alt="avatar">
+				<img src="<?php echo $session->avatar;?>" alt="avatar">
 			</a>
 			<ul class="dropdown-menu dropdown-menu-right">
 				<li class="dropdown-header">
@@ -8,7 +8,7 @@
 				</li>
 				<?php
 					if($_SESSION['user_id']){
-						if($_SESSION['app_mailbox'] == 1){
+						if($site->app_mailbox == 1){
 							//Mailbox Link
 							if(glob("account/mailbox.php")){$link = "account/mailbox.php";}elseif(glob("../account/mailbox.php")){$link = "../account/mailbox.php";}else{$link = "mailbox.php";}
 							echo '
@@ -20,7 +20,7 @@
 							</li>
 							';
 						}
-						if($_SESSION['app_usergroups'] == 1){
+						if($site->app_usergroups == 1){
 							//Usergroups Link
 							if(glob("account/usergroups.php")){$link = "account/usergroups.php";}elseif(glob("../account/usergroups.php")){$link = "../account/usergroups.php";}else{$link = "usergroups.php";}
 							echo '

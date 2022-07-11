@@ -1,4 +1,5 @@
 <?php
+global $db;
 
 $count_income = 0;
 
@@ -32,7 +33,7 @@ foreach($xml_file->channel->item as $item){
 	}
 }
 
-$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_income." facilities have been updated with income records!</div>";
+$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_income." facilities have been updated with income records!</div>";
 $update_log = mysqli_real_escape_string($db->connection, "UPLOAD: ".$count_income." facilities have been updated with income records!");
 mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', '$update_log', '".swc_time(time(),TRUE)["timestamp"]."')");
 

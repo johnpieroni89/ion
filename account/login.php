@@ -1,17 +1,18 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/session.php");
-	include("../assets/php/acct/login.php");
+	include("../autoload.php");
 	
 	if(isset($_SESSION['user_id'])){
 		header("Location: ../index.php");
+	}
+	if(isset($_POST['login'])){
+	    $account->login();
 	}
 	if(isset($_GET['logout'])){
 		$alert = "<div class=\"alert alert-info\" style=\"font-size:14px;\"><strong>You have logged out.</strong></div>";
 	}
 ?>
-
+<html>
+	<body>
 	<?php include("../assets/php/_head.php"); ?>
 		<!-- Login Container -->
 		<div id="login-container">
@@ -19,10 +20,10 @@
 			<center><img class="img-responsive" style="max-height:200px; margin-bottom:50px;" src="../assets/img/logo.png"></center>
 			<!--
 			<h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
-				<strong>Welcome to <?php echo $_SESSION['site_name']; ?></strong>
+				<strong>Welcome to <?php echo $site->name; ?></strong>
 			</h1>
 			-->
-			<?php if(isset($alert)){echo $alert;} ?>
+			<?php if(isset($session->alert)){echo $session->alert;} ?>
 
 			<!-- Login Block -->
 			<div class="block animation-fadeInQuickInv">
@@ -67,7 +68,7 @@
 			
 			<!-- Footer -->
 			<footer class="text-muted text-center animation-pullUp">
-				<?php echo $_SESSION['site_footer']; ?>
+				<?php echo $site->footer; ?>
 			</footer>
 			<!-- END Footer -->
 			

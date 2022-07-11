@@ -26,8 +26,6 @@
 			echo "<span class=\"form-inline\">".$pages->display_jump_menu().$pages->display_items_per_page()."</span>";
 			echo '</div>';
 			echo '<div class="clearfix"></div>';
-			$db = new database;
-			$db->connect();
 			$limit = $pages->limit_start.','.$pages->limit_end;
 			$query = mysqli_query($db->connection,$search_string." LIMIT ".$limit);
 			
@@ -103,8 +101,6 @@
 			echo '</div>';
 			echo '<div class="clearfix"></div>';
 		}elseif($sessionType == "Search Summary"){
-			$db = new database;
-			$db->connect();
 			
 			$query = mysqli_query($db->connection,$search_string_types);
 			echo "

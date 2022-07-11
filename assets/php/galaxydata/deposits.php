@@ -1,7 +1,4 @@
-<?php
-	$db = new database;
-	$db->connect();
-	
+<?php	
 	$planet_uid = mysqli_real_escape_string($db->connection,$_GET['planet_uid']);
 	$query_planet = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT name FROM galaxy_planets WHERE uid = '".$planet_uid."'"))["name"];
 	echo "
@@ -33,10 +30,4 @@
 	echo "
 		</table><hr>
 	";
-	
-	
-	$db->disconnect();
-	unset($db);
-	
-
 ?>

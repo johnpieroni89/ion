@@ -1,12 +1,11 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-
-	$db = new database;
-	$db->connect();
 		
 	if($_POST['submit_bootstrap']){
 		$file1 = $_POST['inputBootstrap3css'];
@@ -16,51 +15,51 @@
 		$info1 = pathinfo($file1);
 		$info2 = pathinfo($file2);
 		if(((!$file_headers1 || $file_headers1[0] == 'HTTP/1.1 404 Not Found') || (!$file_headers2 || $file_headers2[0] == 'HTTP/1.1 404 Not Found')) || $info1["extension"] != "css" || $info2["extension"] == "js"){
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
 		}else{
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputBootstrap3css']."' WHERE field = 'plugin_bootstrap3_css'");
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputBootstrap3js']."' WHERE field = 'plugin_bootstrap3_js'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Bootstrap 3 plugins have been updated.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Bootstrap 3 plugins have been updated.</div>";
 		}
 	}elseif($_POST['submit_chartjs']){
 		$file = $_POST['inputchartjs'];
 		$file_headers = @get_headers($file);
 		$info = pathinfo($file);
 		if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $info["extension"] != "js"){
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
 		}else{
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputchartjs']."' WHERE field = 'plugin_chartjs'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">ChartJS plugin has been updated.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">ChartJS plugin has been updated.</div>";
 		}
 	}elseif($_POST['submit_fontawesome']){
 		$file = $_POST['inputFontAwesomecss'];
 		$file_headers = @get_headers($file);
 		$info = pathinfo($file);
 		if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $info["extension"] != "css"){
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
 		}else{
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputFontAwesomecss']."' WHERE field = 'plugin_fontawesome'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">FontAwesome plugin has been updated.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">FontAwesome plugin has been updated.</div>";
 		}
 	}elseif($_POST['submit_jquery']){
 		$file = $_POST['inputJqueryjs'];
 		$file_headers = @get_headers($file);
 		$info = pathinfo($file);
 		if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $info["extension"] != "js"){
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
 		}else{
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputJqueryjs']."' WHERE field = 'plugin_jquery'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">jQuery plugin has been updated.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">jQuery plugin has been updated.</div>";
 		}
 	}elseif($_POST['submit_modernizr']){
 		$file = $_POST['inputModernizrjs'];
 		$file_headers = @get_headers($file);
 		$info = pathinfo($file);
 		if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found' || $info["extension"] != "js"){
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">URL does not exist. Changes have been reverted.</div>";
 		}else{
 			mysqli_query($db->connection,"UPDATE site_settings SET value = '".$_POST['inputModernizrjs']."' WHERE field = 'plugin_modernizr'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Modernizr plugin has been updated.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Modernizr plugin has been updated.</div>";
 		}
 	}
 	
@@ -70,9 +69,6 @@
 	$plugin_fontawesome = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_fontawesome'"));
 	$plugin_jquery = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_jquery'"));
 	$plugin_modernizr = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_modernizr'"));
-	
-	$db->disconnect();
-	unset($db);
 ?>
 
 	<?php include("../assets/php/_head.php"); ?>
@@ -111,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12" style="overflow: auto;">

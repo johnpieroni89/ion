@@ -1,18 +1,16 @@
 <?php 
-error_reporting(0);
-include("../assets/php/database.php");
-include("../assets/php/session.php");
-include("../assets/php/functions.php");
-include("../assets/php/acct/check.php");
+include("../autoload.php");
+global $db;
+global $site;
+global $session;
+global $account;
+$session->check_login();
 include("../assets/php/_head.php");
 
 if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 ?>
 
-<?php  
-    $db = new database;
-    $db->connect();
-    
+<?php
 	if($_GET['usergroup_id']){
 		$usergroup_id = mysqli_real_escape_string($db->connection,$_GET['usergroup_id']);
 		$usergroup_data = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM usergroups WHERE usergroup_id = '$usergroup_id'"));
@@ -23,7 +21,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 	
 	if($_GET['d']){
 		mysqli_query($db->connection, "DELETE FROM usergroups_members WHERE usergroup_id = '$usergroup_id' AND user_id = '".$_GET['d']."'");
-		$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User has been removed from this usergroup.</div>";
+		$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User has been removed from this usergroup.</div>";
 	}	
 	
     if(isset($_POST['set_privs'])) {
@@ -54,7 +52,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 		$flashnews = $_POST['input_flashnews'];
 
         if($name == "") {
-            $alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Enter a usergroup name.</div>";
+            $session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Enter a usergroup name.</div>";
         } else {
 			if($name != "") {
 				mysqli_query($db->connection, "UPDATE usergroups SET usergroup_name = '$name', usergroup_moderator = '$leader' WHERE usergroup_id = '$usergroup'");
@@ -69,15 +67,15 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 				}
 			}
 			$usergroup_privs = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM usergroups_privs WHERE group_id = '$usergroup_id'"));
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully updated usergroup ".$name.".</div>";   
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully updated usergroup ".$name.".</div>";   
         }
     }else if(isset($_POST['inputAdd'])){
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['inputAdd']);
 		if(mysqli_num_rows(mysqli_query($db->connection, "SELECT * FROM usergroups_members WHERE usergroup_id = '$usergroup_id' AND user_id = '$user_id'")) == 0){
 			mysqli_query($db->connection, "INSERT INTO usergroups_members (usergroup_id, user_id) VALUES ('$usergroup_id', '$user_id')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added member to this usergroup.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added member to this usergroup.</div>";
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User is already a member of this usergroup.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User is already a member of this usergroup.</div>";
 		}
 	}
 ?>
@@ -118,7 +116,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
                             </div>
                         </div>
                     </div>
-                    <?php if(isset($alert)){echo $alert;} ?>
+                    <?php if(isset($session->alert)){echo $session->alert;} ?>
 
                     <!-- Block -->
                     <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -138,8 +136,6 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
                                         <select class="form-control" id="inputMod" name="inputMod">
                                             <option value="0">-- Select User --</option>
                                             <?php
-                                            $db = new database;
-                                            $db->connect();
                                             $query = mysqli_query($db->connection,"SELECT user_id, username FROM users ORDER BY username ASC");
                                             while($data = mysqli_fetch_assoc($query)){
 												if($usergroup_data['usergroup_moderator'] == $data['user_id']){
@@ -148,8 +144,6 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 													echo "<option value=\"".$data['user_id']."\">".ucwords($data['username'])."</option>";
 												}
                                             }
-                                            $db->disconnect();
-                                            unset($db);
                                             ?>
                                         </select>
                                     </div>
@@ -362,15 +356,11 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 								<div class="col-sm-9">
 									<select class="form-control" id="inputAdd" name="inputAdd">
 									<?php
-										$db = new database;
-										$db->connect();
 										$query = mysqli_query($db->connection,"SELECT user_id, username FROM users ORDER BY username ASC");
 
 										while($data = mysqli_fetch_assoc($query)){
 											echo "<option value=\"".$data['user_id']."\">".ucwords($data['username'])."</option>";
 										}
-										$db->disconnect();
-										unset($db);
 									?>
 									</select>
 								</div>
@@ -382,8 +372,6 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ heade
 							
 							<table class="table table-bordered table-striped table-responsive table-hover"><tr><th>User ID</th><th>Username</th><th>Action</th></tr>
 								<?php
-									$db = new database;
-									$db->connect();
 									$query = mysqli_query($db->connection,"SELECT usergroups_members.user_id, username FROM usergroups_members LEFT JOIN users ON usergroups_members.user_id = users.user_id WHERE usergroup_id = '$usergroup_id' ORDER BY username ASC");
 
 									while($data = mysqli_fetch_assoc($query)){

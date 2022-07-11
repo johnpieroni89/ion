@@ -1,13 +1,11 @@
 <?php 
-	error_reporting(1);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
-	
-	$db = new database;
-	$db->connect();
+    include("autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
+    error_reporting(0);
 	
 	if ($_SESSION['user_privs']['reporting_publish'] == 0 && $_SESSION['user_privs']['reporting_view'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
 		header("Location: index.php");
@@ -59,12 +57,12 @@
 				mysqli_query($db->connection, "INSERT INTO reporting_reports_coi (report_id, need_id) VALUES ('$report_id', '$inputIN')");
 			}
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '4', 'PUBLISH: The Report <a target=\"blank\" href=\"../reporting.php?view=1&serial=$serial\">".$serial."</a> was published', '".swc_time(time(),TRUE)["timestamp"]."')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Report ".$serial." was published.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Report ".$serial." was published.</div>";
 		}else if($inputType == 2){ //Submit Intelligence Need
 			$serial = "IN-".swc_time(time(),TRUE)['day'].swc_time(time(),TRUE)['hour'].swc_time(time(),TRUE)['minute']."-".swc_time(time(),TRUE)['year'];
 			mysqli_query($db->connection, "INSERT INTO reporting_needs (serial, author, title, focus, content, timestamp) VALUES('$serial', '".$_SESSION['user_id']."', '$inputTitle', '$inputFocus', '$inputContent', '".swc_time(time(),TRUE)['timestamp']."')");
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '4', 'PUBLISH: The Intelligence Need <a target=\"blank\" href=\"../reporting.php?view=2&serial=$serial\">".$serial."</a> was published', '".swc_time(time(),TRUE)["timestamp"]."')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Intelligence Need ".$serial." was published.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Intelligence Need ".$serial." was published.</div>";
 		}
 	}else if($_POST['submit'] == "Save Report"){
 		$serial = mysqli_real_escape_string($db->connection, $_POST['inputSerial']);
@@ -102,7 +100,7 @@
 		}
 		mysqli_query($db->connection, "UPDATE reporting_reports SET title = '$inputTitle', focus = '$inputFocus', content = '$inputContent' WHERE serial = '$serial'");
 		mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '4', 'EDIT: The Report <a target=\"blank\" href=\"../reporting.php?view=1&serial=$serial\">".$serial."</a> was edited', '".swc_time(time(),TRUE)["timestamp"]."')");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Report ".$serial." was edited.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Report ".$serial." was edited.</div>";
 	}else if($_POST['submit'] == "Save IN"){
 		$serial = mysqli_real_escape_string($db->connection, $_POST['inputSerial']);
 		$inputTitle = mysqli_real_escape_string($db->connection, $_POST['inputTitle']);
@@ -110,7 +108,7 @@
 		$inputContent = mysqli_real_escape_string($db->connection, $_POST['inputContent']);
 		mysqli_query($db->connection, "UPDATE reporting_needs SET title = '$inputTitle', focus = '$inputFocus', content = '$inputContent' WHERE serial = '$serial'");
 		mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '4', 'EDIT: The Information Need <a target=\"blank\" href=\"../reporting.php?view=2&serial=$serial\">".$serial."</a> was edited', '".swc_time(time(),TRUE)["timestamp"]."')");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Information Need ".$serial." was edited.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The Information Need ".$serial." was edited.</div>";
 	}
 	
 	if(isset($_GET['serial'])){
@@ -122,26 +120,26 @@
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['inputAddUser']);
 		if(mysqli_num_rows(mysqli_query($db->connection, "SELECT * FROM reporting_needs_coi_users WHERE need_id = '".$reportData['need_id']."' AND user_id = '$user_id'")) == 0){
 			mysqli_query($db->connection, "INSERT INTO reporting_needs_coi_users (need_id, user_id) VALUES ('".$reportData['need_id']."', '$user_id')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added user to this Information Need.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added user to this Information Need.</div>";
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User can already view this Information Need.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User can already view this Information Need.</div>";
 		}
 	}else if(isset($_POST['inputAddUsergroup']) && $_SESSION['user_privs']['admin'] != 0){
 		$usergroup_id = mysqli_real_escape_string($db->connection, $_POST['inputAddUsergroup']);
 		if(mysqli_num_rows(mysqli_query($db->connection, "SELECT * FROM reporting_needs_coi_usergroups WHERE need_id = '".$reportData['need_id']."' AND usergroup_id = '$usergroup_id'")) == 0){
 			mysqli_query($db->connection, "INSERT INTO reporting_needs_coi_usergroups (need_id, usergroup_id) VALUES ('".$reportData['need_id']."', '$usergroup_id')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added usergroup to this Information Need.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully added usergroup to this Information Need.</div>";
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Usergroup can already view this Information Need.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Usergroup can already view this Information Need.</div>";
 		}
 	}
 	
 	if(isset($_GET['dUser']) && $_SESSION['user_privs']['admin'] != 0){
 		mysqli_query($db->connection, "DELETE FROM reporting_needs_coi_users WHERE need_id = '".$reportData['need_id']."' AND user_id = '".$_GET['dUser']."'");
-		$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User has been removed from the Information Need.</div>";
+		$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">User has been removed from the Information Need.</div>";
 	}else if(isset($_GET['dUsergroup']) && $_SESSION['user_privs']['admin'] != 0){
 		mysqli_query($db->connection, "DELETE FROM reporting_needs_coi_usergroups WHERE need_id = '".$reportData['need_id']."' AND usergroup_id = '".$_GET['dUsergroup']."'");
-		$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Usergroup has been removed from the Information Need.</div>";
+		$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Usergroup has been removed from the Information Need.</div>";
 	}
 ?>
 
@@ -180,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block">
@@ -188,7 +186,7 @@
                             <div class="block-title hidden-print">
 								<h2>Data</h2>
 								<?php
-									$db = new database;
+									$db = new Database;
 									$db->connect();
 									if($_SESSION['user_privs']['reporting_view'] > 0 || $_SESSION['user_privs']['admin'] > 0){
 										echo "

@@ -1,14 +1,13 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
 	if(isset($_GET['user_id']) && $_GET['user_id'] != ""){
-		$db = new database;
-		$db->connect();
 		$user_id = mysqli_real_escape_string($db->connection,$_GET['user_id']);
 		$user = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM users WHERE user_id = '".$user_id."'"));
 		if(count($user) == 0){header("Location: users.php");}
@@ -55,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -72,9 +71,6 @@
 							<hr/>
 							
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if($_GET['view'] == 0 || $_GET['view'] == ""){
 									if(isset($_POST['search'])){
 										$search = mysqli_real_escape_string($db->connection,$_POST['search']);
@@ -135,7 +131,6 @@
 								}
 							?>  
                         </div>
-						
                     </div>
                 </div>
             </div>

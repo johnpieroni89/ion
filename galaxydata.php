@@ -1,17 +1,14 @@
 <?php 
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
+    include("autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	
 	if ($_SESSION['user_privs']['galaxydata_search'] == 0 && $_SESSION['user_privs']['galaxydata_analytics'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
 		header("Location: index.php");
 	}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(($_POST || $_GET) && !isset($_POST['search'])){
 		if(isset($_POST["Delete"]) && ($_SESSION['user_privs']['galaxydata_delete'] > 0 || $_SESSION['user_privs']['admin'] > 0)){
@@ -21,7 +18,7 @@
 				$count_del++;
 			}
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'DELETE: ".$count_del." records were deleted', '".swc_time(time(),TRUE)["timestamp"]."')");
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".$count_del." records have been deleted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".$count_del." records have been deleted.</div>";
 		}
 		
 		if(isset($_POST["type"])){$sessionType = $_POST["type"];}elseif(isset($_GET["type"])){$sessionType = $_GET["type"];}
@@ -96,11 +93,11 @@
 			
 		}elseif($sessionType == "dataFactions"){
 			//$order = mysqli_real_escape_string($db->connection,$_POST["orderBy"]);
-			if($order == ""){$order = "controlled_by ASC";}
+			if(! isset($order)){$order = "controlled_by ASC";}
 			$search_string = "SELECT SUM(population) AS pop, COUNT(galaxy_planets.uid) AS planets, SUM(cities) AS cities, AVG(civilization) AS civ, AVG(tax) AS taxes, controlled_by FROM galaxy_planets LEFT JOIN factions ON galaxy_planets.controlled_by = factions.name WHERE galaxy_planets.type <> 'sun' GROUP BY controlled_by ORDER BY ".$order."";
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Data by all Factions', '".swc_time(time(),TRUE)["timestamp"]."')");
 			if(isset($_POST['action'])){
-				$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Faction galaxy data has been captured.</div>";
+				$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Faction galaxy data has been captured.</div>";
 			}
 		}elseif($sessionType == "historyFactions"){
 			$faction = mysqli_real_escape_string($db->connection,$_GET["faction"]);
@@ -126,13 +123,13 @@
 						$xml_file = simplexml_load_string(file_get_contents($file));
 						
 						$planet_name = mysqli_real_escape_string($db->connection,$xml_file{'planet_name'});
-						$planet_uid = mysqli_real_escape_string($db->connection,$xml_file{'planet_uid'});
-						$timestamp = mysqli_real_escape_string($db->connection,$xml_file{'timestamp-swc'});
+						$planet_uid = mysqli_real_escape_string($db->connection,$xml_file['planet_uid']);
+						$timestamp = mysqli_real_escape_string($db->connection,$xml_file['timestamp-swc']);
 						
 						foreach($xml_file->deposit as $deposit){
-							$x = mysqli_real_escape_string($db->connection,$deposit{'x'});
-							$y = mysqli_real_escape_string($db->connection,$deposit{'y'});
-							$deposit_uid = mysqli_real_escape_string($db->connection,$deposit{'deposit_uid'});
+							$x = mysqli_real_escape_string($db->connection,$deposit['x']);
+							$y = mysqli_real_escape_string($db->connection,$deposit['y']);
+							$deposit_uid = mysqli_real_escape_string($db->connection,$deposit['deposit_uid']);
 							$type = mysqli_real_escape_string($db->connection,$deposit->type);
 							$size = mysqli_real_escape_string($db->connection,$deposit->size);
 							mysqli_query($db->connection, "DELETE FROM data_galaxydata_deposits WHERE planet_uid = '$planet_uid'");
@@ -145,9 +142,9 @@
 							}
 						}
 						
-						$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Material deposit data uploaded for the planet ".$planet_name.".</div>";
+						$session->alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Material deposit data uploaded for the planet ".$planet_name.".</div>";
 					}else{
-						$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect filetype: Only xml files are allowed.</div>";
+						$session->alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect filetype: Only xml files are allowed.</div>";
 					}
 				}
 			}
@@ -209,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block" style="min-height:700px;">
@@ -240,76 +237,72 @@
 							</div>
 							<div class="block-content col-sm-12">
 							<?php 
-								if((isset($search_string) && (isset($sessionType))) || isset($_POST['search']) || isset($_GET['search'])){
-									if(($sessionType == "search" && $searchType == "planets") || isset($_POST['search'])){
-										include("assets/php/galaxydata/search.php");
-									}elseif($sessionType == "search" && $searchType == "deposits"){
-										include("assets/php/galaxydata/searchDeposits.php");
-									}elseif($sessionType == "dataFactions" && ($_SESSION['user_privs']['galaxydata_analytics'] > 0 || $_SESSION['user_privs']['admin'] != 0)){
-										include("assets/php/galaxydata/dataFactions.php");
-									}
-								}elseif($sessionType == "deposits"){
-									include("assets/php/galaxydata/deposits.php");
-								}elseif($sessionType == "historyFactions" && ($_SESSION['user_privs']['galaxydata_analytics'] > 0 || $_SESSION['user_privs']['admin'] != 0)){
-									include("assets/php/galaxydata/historyFactions.php");
-								}elseif($sessionType == "planetDevelopment2"){
-									include("assets/php/galaxydata/planetDevelopment2.php");
-									mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Planetary Development', '".swc_time(time(),TRUE)["timestamp"]."')");
-								}elseif($sessionType == "listGovernors"){
-									include("assets/php/galaxydata/listGovernors.php");
-									mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Governor List', '".swc_time(time(),TRUE)["timestamp"]."')");
-								}elseif($sessionType == "listMagistrates"){
-									include("assets/php/galaxydata/listMagistrates.php");
-									mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Magistrate List', '".swc_time(time(),TRUE)["timestamp"]."')");
-								}else{
-									$db = new database;
-									$db->connect();
-									
-									$sectors = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_sectors"))["count"];
-									$systems = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_systems"))["count"];
-									$planets = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_planets"))["count"];
-									$owners = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT controlled_by FROM galaxy_planets WHERE controlled_by != '' AND controlled_by IS NOT NULL"));
-									$governors = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT governor FROM galaxy_planets WHERE governor != '' AND governor IS NOT NULL"));
-									$magistrates = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT magistrate FROM galaxy_planets WHERE magistrate != '' AND magistrate IS NOT NULL"));
-									$deposits = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(deposit_uid) as count FROM data_galaxydata_deposits"))["count"];
-									
-									echo "
-										<div class=\"row\">
-											<div class=\"col-sm-12\"><center><h1><b>Statistics</b></h1></center></div>
+							if(isset($sessionType)) {
+							    if((isset($search_string) && (isset($sessionType))) || isset($_POST['search']) || isset($_GET['search'])){
+							        if(($sessionType == "search" && $searchType == "planets") || isset($_POST['search'])){
+							            include("assets/php/galaxydata/search.php");
+							        }elseif($sessionType == "search" && $searchType == "deposits"){
+							            include("assets/php/galaxydata/searchDeposits.php");
+							        }elseif($sessionType == "dataFactions" && ($_SESSION['user_privs']['galaxydata_analytics'] > 0 || $_SESSION['user_privs']['admin'] != 0)){
+							            include("assets/php/galaxydata/dataFactions.php");
+							        }
+							    }elseif($sessionType == "deposits"){
+							        include("assets/php/galaxydata/deposits.php");
+							    }elseif($sessionType == "historyFactions" && ($_SESSION['user_privs']['galaxydata_analytics'] > 0 || $_SESSION['user_privs']['admin'] != 0)){
+							        include("assets/php/galaxydata/historyFactions.php");
+							    }elseif($sessionType == "planetDevelopment2"){
+							        include("assets/php/galaxydata/planetDevelopment2.php");
+							        mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Planetary Development', '".swc_time(time(),TRUE)["timestamp"]."')");
+							    }elseif($sessionType == "listGovernors"){
+							        include("assets/php/galaxydata/listGovernors.php");
+							        mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Governor List', '".swc_time(time(),TRUE)["timestamp"]."')");
+							    }elseif($sessionType == "listMagistrates"){
+							        include("assets/php/galaxydata/listMagistrates.php");
+							        mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '2', 'ANALYTICS: Magistrate List', '".swc_time(time(),TRUE)["timestamp"]."')");
+							    }
+							} else {								
+								$sectors = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_sectors"))["count"];
+								$systems = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_systems"))["count"];
+								$planets = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM galaxy_planets"))["count"];
+								$owners = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT controlled_by FROM galaxy_planets WHERE controlled_by != '' AND controlled_by IS NOT NULL"));
+								$governors = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT governor FROM galaxy_planets WHERE governor != '' AND governor IS NOT NULL"));
+								$magistrates = mysqli_num_rows(mysqli_query($db->connection, "SELECT DISTINCT magistrate FROM galaxy_planets WHERE magistrate != '' AND magistrate IS NOT NULL"));
+								$deposits = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(deposit_uid) as count FROM data_galaxydata_deposits"))["count"];
+								
+								echo "
+									<div class=\"row\">
+										<div class=\"col-sm-12\"><center><h1><b>Statistics</b></h1></center></div>
+									</div>
+									<div class=\"row\">
+										<div class=\"col-sm-12\" style=\"margin: auto;\">
+											<center>
+											<table class=\"table table-bordered table-striped table-hover\">
+												<tr><td>Sectors:</td><td>".number_format($sectors)."</td></tr>
+												<tr><td>Systems:</td><td>".number_format($systems)."</td></tr>
+												<tr><td>Planets:</td><td>".number_format($planets)."</td></tr>
+												<tr><td>Owners (Unique):</td><td>".number_format($owners)."</td></tr>
+												<tr><td>Governors (Unique):</td><td>".number_format($governors)."</td></tr>
+												<tr><td>Magistrates (Unique):</td><td>".number_format($magistrates)."</td></tr>
+												<tr><td>Material Deposits:</td><td>".number_format($deposits)."</td></tr>
+											</table>
+											</center>
 										</div>
-										<div class=\"row\">
-											<div class=\"col-sm-12\" style=\"margin: auto;\">
-												<center>
-												<table class=\"table table-bordered table-striped table-hover\">
-													<tr><td>Sectors:</td><td>".number_format($sectors)."</td></tr>
-													<tr><td>Systems:</td><td>".number_format($systems)."</td></tr>
-													<tr><td>Planets:</td><td>".number_format($planets)."</td></tr>
-													<tr><td>Owners (Unique):</td><td>".number_format($owners)."</td></tr>
-													<tr><td>Governors (Unique):</td><td>".number_format($governors)."</td></tr>
-													<tr><td>Magistrates (Unique):</td><td>".number_format($magistrates)."</td></tr>
-													<tr><td>Material Deposits:</td><td>".number_format($deposits)."</td></tr>
-												</table>
-												</center>
-											</div>
+									</div>
+								";
+								
+								echo "
+									<div class=\"row\">
+										<div class=\"col-sm-12\" style=\"position: relative;text-align:center;float:none;margin: auto;\">
+											<center><h1><b>Galaxy Map</b></h1></center>
 										</div>
-									";
-									
-									echo "
-										<div class=\"row\">
-											<div class=\"col-sm-12\" style=\"position: relative;text-align:center;float:none;margin: auto;\">
-												<center><h1><b>Galaxy Map</b></h1></center>
-											</div>
+									</div>
+									<div class=\"row\">
+										<div class=\"col-sm-12\" style=\"position: relative;height:1000px;width:1000px;float:none;margin:0 auto;\">
+											<img style=\"height:1000px; width:1000px; position: absolute;top:0px;left:0px;z-index:1;\" src=\"assets/img/graphics/galaxyReference.jpg\">
 										</div>
-										<div class=\"row\">
-											<div class=\"col-sm-12\" style=\"position: relative;height:1000px;width:1000px;float:none;margin:0 auto;\">
-												<img style=\"height:1000px; width:1000px; position: absolute;top:0px;left:0px;z-index:1;\" src=\"assets/img/graphics/galaxyReference.jpg\">
-											</div>
-										</div>
-									";
-									
-									$db->disconnect();
-									unset($db);
-								}
+									</div>
+								";
+							}
 							?>
 							</div>
                             
@@ -337,14 +330,10 @@
 														<select class="form-control" id="inputSector" name="inputSector">
 															<option value="">-- All --</option>
 															<?php
-																$db = new database;
-																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_sectors ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
 																	echo "<option value=\"".$data['uid']."\">".$data['name']."</option>";
 																}
-																$db->disconnect();
-																unset($db);
 															?>
 														</select>
 													</div>
@@ -355,14 +344,10 @@
 														<select class="form-control" id="inputSystem" name="inputSystem">
 															<option value="">-- All --</option>
 															<?php
-																$db = new database;
-																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_systems ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
 																	echo "<option value=\"".$data['uid']."\">".$data['name']."</option>";
 																}
-																$db->disconnect();
-																unset($db);
 															?>
 														</select>
 													</div>
@@ -373,14 +358,10 @@
 														<select class="form-control" id="inputPlanet" name="inputPlanet">
 															<option value="">-- All --</option>
 															<?php
-																$db = new database;
-																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_planets ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
 																	echo "<option value=\"".$data['uid']."\">".$data['name']."</option>";
 																}
-																$db->disconnect();
-																unset($db);
 															?>
 														</select>
 													</div>
@@ -537,8 +518,6 @@
 														From: 
 														<select class="form-control" id="inputFrom" name="inputFrom">
 															<?php
-																$db = new database;
-																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT DISTINCT timestamp FROM data_galaxydata_planets ORDER BY timestamp DESC");
 																$count = 1;
 																while($data = mysqli_fetch_assoc($query)){
@@ -549,21 +528,15 @@
 																	}
 																	$count++;
 																}
-																$db->disconnect();
-																unset($db);
 															?>
 														</select>
 														To: 
 														<select class="form-control" id="inputTo" name="inputTo">
 															<?php
-																$db = new database;
-																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT DISTINCT timestamp FROM data_galaxydata_planets ORDER BY timestamp DESC");
 																while($data = mysqli_fetch_assoc($query)){
 																	echo "<option value=\"".$data['timestamp']."\">Year ".(swc_time($data['timestamp'], TRUE)['year'])." Day ".(swc_time($data['timestamp'], TRUE)['day'])."</option>";
 																}
-																$db->disconnect();
-																unset($db);
 															?>
 														</select>
 														Controlled By:

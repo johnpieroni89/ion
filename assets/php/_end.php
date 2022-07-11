@@ -1,12 +1,10 @@
         <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
 		<?php
-		$db = new database;
+		$db = new Database();
 		$db->connect();
 		$plugin_bootstrap3_js = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_bootstrap3_js'"));
 		$plugin_chartjs = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_chartjs'"));
 		$plugin_jquery = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_jquery'"));
-		$db->disconnect();
-		unset($db);
 		?>
 		
         <script src="<?php echo $plugin_jquery['value']; ?>"></script>

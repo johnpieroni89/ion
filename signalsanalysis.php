@@ -1,9 +1,11 @@
 <?php 
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
+    include("autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
+    error_reporting(0);
 	/*
 		PRIVS
 		Search 1 allows sanitized queries, Search 2 allows view of manager/operator/income
@@ -17,8 +19,6 @@
 	if ($_SESSION['user_privs']['signalsanalysis_search'] == 0 && $_SESSION['user_privs']['signalsanalysis_upload'] == 0 && $_SESSION['user_privs']['signalsanalysis_analytics'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
 		header("Location: index.php");
 	}
-	$db = new database;
-	$db->connect();
 	
 	$filters = checkFilters($_SESSION['user_id']);
 	$filter = compileFilters($filters);
@@ -43,7 +43,7 @@
 				$count_del++;
 			}
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', 'DELETE: ".$count_del." records were deleted', '".swc_time(time(),TRUE)["timestamp"]."')");
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".$count_del." records have been deleted.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".$count_del." records have been deleted.</div>";
 		}
 		
 		if($sessionType == "Search Details" || $sessionType == "Search Summary"){
@@ -194,7 +194,7 @@
 			$results_count = mysqli_num_rows(mysqli_query($db->connection,"SELECT data_signalsanalysis.uid FROM data_signalsanalysis LEFT JOIN entities ON data_signalsanalysis.type = entities.uid LEFT JOIN entities_classes ON entities.class = entities_classes.uid LEFT JOIN data_signalsanalysis_customs ON data_signalsanalysis.uid = data_signalsanalysis_customs.uid LEFT JOIN galaxy_sectors ON data_signalsanalysis.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_signalsanalysis.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_signalsanalysis.planet = galaxy_planets.uid LEFT JOIN data_signalsanalysis_activity ON data_signalsanalysis.activity = data_signalsanalysis_activity.id WHERE data_signalsanalysis.activity = '".$query_activity."' UNION ALL SELECT data_signalsanalysis_archive.uid FROM data_signalsanalysis_archive LEFT JOIN entities ON data_signalsanalysis_archive.type = entities.uid LEFT JOIN entities_classes ON entities.class = entities_classes.uid LEFT JOIN data_signalsanalysis_customs ON data_signalsanalysis_archive.uid = data_signalsanalysis_customs.uid LEFT JOIN galaxy_sectors ON data_signalsanalysis_archive.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_signalsanalysis_archive.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_signalsanalysis_archive.planet = galaxy_planets.uid LEFT JOIN data_signalsanalysis_activity ON data_signalsanalysis_archive.activity = data_signalsanalysis_activity.id WHERE data_signalsanalysis_archive.activity = '".$query_activity."'".$filter.""));
 			$search_string = "SELECT data_signalsanalysis.*, data_signalsanalysis_activity.activity_id, entities_classes.class AS ent_class, galaxy_sectors.name AS loc_sec, galaxy_systems.name AS loc_sys, entities.img_small, data_signalsanalysis_customs.custom_image, entities.name AS type_name, galaxy_planets.name AS loc_planet FROM data_signalsanalysis LEFT JOIN entities ON data_signalsanalysis.type = entities.uid LEFT JOIN entities_classes ON entities.class = entities_classes.uid LEFT JOIN data_signalsanalysis_customs ON data_signalsanalysis.uid = data_signalsanalysis_customs.uid LEFT JOIN galaxy_sectors ON data_signalsanalysis.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_signalsanalysis.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_signalsanalysis.planet = galaxy_planets.uid LEFT JOIN data_signalsanalysis_activity ON data_signalsanalysis.activity = data_signalsanalysis_activity.id WHERE data_signalsanalysis.activity = '".$query_activity."' UNION ALL SELECT data_signalsanalysis_archive.uid, data_signalsanalysis_archive.name, data_signalsanalysis_archive.type, data_signalsanalysis_archive.owner, data_signalsanalysis_archive.manager, data_signalsanalysis_archive.operator, data_signalsanalysis_archive.sector, data_signalsanalysis_archive.galx, data_signalsanalysis_archive.galy, data_signalsanalysis_archive.system, data_signalsanalysis_archive.sysx, data_signalsanalysis_archive.sysy, data_signalsanalysis_archive.planet, data_signalsanalysis_archive.atmox, data_signalsanalysis_archive.atmoy, data_signalsanalysis_archive.surfx, data_signalsanalysis_archive.surfy, data_signalsanalysis_archive.passengers, data_signalsanalysis_archive.ships, data_signalsanalysis_archive.vehicles, data_signalsanalysis_archive.income, data_signalsanalysis_archive.timestamp, data_signalsanalysis_archive.activity, data_signalsanalysis_activity.activity_id, entities_classes.class AS ent_class, galaxy_sectors.name AS loc_sec, galaxy_systems.name AS loc_sys, entities.img_small, data_signalsanalysis_customs.custom_image, entities.name AS type_name, galaxy_planets.name AS loc_planet FROM data_signalsanalysis_archive LEFT JOIN entities ON data_signalsanalysis_archive.type = entities.uid LEFT JOIN entities_classes ON entities.class = entities_classes.uid LEFT JOIN data_signalsanalysis_customs ON data_signalsanalysis_archive.uid = data_signalsanalysis_customs.uid LEFT JOIN galaxy_sectors ON data_signalsanalysis_archive.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_signalsanalysis_archive.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_signalsanalysis_archive.planet = galaxy_planets.uid LEFT JOIN data_signalsanalysis_activity ON data_signalsanalysis_archive.activity = data_signalsanalysis_activity.id WHERE data_signalsanalysis_archive.activity = '".$query_activity."'".$filter." ORDER BY timestamp DESC";
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', 'SEARCH: activity = ".$activity."', '".swc_time(time(),TRUE)["timestamp"]."')");
-			//$alert = $search_string;
+			//$session->alert = $search_string;
 		}elseif($sessionType == "buffer review"){
 			$activity_id = mysqli_real_escape_string($db->connection,$_GET["activity_id"]);
 			$query_activity = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT id FROM data_signalsanalysis_activity WHERE activity_id = '".$activity_id."'"))["id"];
@@ -233,12 +233,12 @@
 				mysqli_query($db->connection, "DELETE FROM data_signalsanalysis_buffer WHERE activity = '".$activity."'");
 				mysqli_query($db->connection, "DELETE FROM data_signalsanalysis_activity WHERE id = '".$activity."'");
 				mysqli_query($db->connection, "DELETE FROM data_signalsanalysis_scantime WHERE timestamp = '".$$activity_timestamp."' AND status = '0'");
-				$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The data from activity (".$activity_id.") has been deleted from the buffer</div>";
+				$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The data from activity (".$activity_id.") has been deleted from the buffer</div>";
 			}elseif($_POST["action"] == "Approve"){
 				include("assets/php/swc_api/xml_upload_buffer.php");
 			}
 		}
-	}elseif($_POST['search'] != ""){
+	}elseif(isset($_POST['search'])){
 		$sessionType = "Search Details";
 		$search = mysqli_real_escape_string($db->connection, $_POST['search']);
 		$results_count = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT COUNT(data_signalsanalysis.uid) AS count FROM data_signalsanalysis LEFT JOIN entities ON data_signalsanalysis.type = entities.uid LEFT JOIN entities_classes ON entities.class = entities_classes.uid LEFT JOIN data_signalsanalysis_customs ON data_signalsanalysis.uid = data_signalsanalysis_customs.uid LEFT JOIN galaxy_sectors ON data_signalsanalysis.sector = galaxy_sectors.uid LEFT JOIN galaxy_systems ON data_signalsanalysis.system = galaxy_systems.uid LEFT JOIN galaxy_planets ON data_signalsanalysis.planet = galaxy_planets.uid LEFT JOIN data_signalsanalysis_activity ON data_signalsanalysis.activity = data_signalsanalysis_activity.id WHERE owner LIKE '%$search%' OR data_signalsanalysis.uid LIKE '%:$search' OR data_signalsanalysis.name LIKE '%$search%' OR data_signalsanalysis_activity.activity_id = '$search'".$filter.""))["count"];
@@ -283,7 +283,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block" style="overflow:auto; min-height:1000px; position:relative;">
@@ -291,7 +291,7 @@
                             <div class="block-title hidden-print" style="overflow: auto;">
 								<h2 class="pull-left">Data</h2>
 								<?php
-									$db = new database;
+									$db = new Database;
 									$db->connect();
 									if($_SESSION['user_privs']['signalsanalysis_search'] > 0 || $_SESSION['user_privs']['admin'] > 0){
 										echo "
@@ -332,14 +332,16 @@
 									if($sessionType == "Search Details" || $sessionType == "Search Summary" || $sessionType == "activity" || $sessionType == "buffer review" || isset($_POST['search'])){
 										include("assets/php/signalsanalysis/search.php");
 									}
-								}elseif($sessionType == "InventoryList"){ //NEEDS FIXED FOR SPEED
-									include("assets/php/signalsanalysis/inventoryList.php");
-								}elseif($sessionType == "InventoryLocation"){
-									include("assets/php/signalsanalysis/inventoryLocation.php");
-								}elseif($sessionType == "FacilityIncome"){
-									include("assets/php/signalsanalysis/facilityIncome.php");
-								}elseif($sessionType == "buffer"){
-									include("assets/php/signalsanalysis/buffer.php");
+								}elseif(isset($sessionType)) {
+								    if($sessionType == "InventoryList"){ //NEEDS FIXED FOR SPEED
+								        include("assets/php/signalsanalysis/inventoryList.php");
+								    }elseif($sessionType == "InventoryLocation"){
+								        include("assets/php/signalsanalysis/inventoryLocation.php");
+								    }elseif($sessionType == "FacilityIncome"){
+								        include("assets/php/signalsanalysis/facilityIncome.php");
+								    }elseif($sessionType == "buffer"){
+								        include("assets/php/signalsanalysis/buffer.php");
+								    }
 								}else{
 									include("assets/php/signalsanalysis/pingMap.php");
 								}
@@ -377,7 +379,7 @@
 															<option value="">-- Any --</option>
 															<option value="NULL">Deepspace</option>
 															<?php
-																$db = new database;
+																$db = new Database;
 																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_sectors ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
@@ -396,7 +398,7 @@
 															<option value="">-- Any --</option>
 															<option value="NULL">Deepspace</option>
 															<?php
-																$db = new database;
+																$db = new Database;
 																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_systems ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
@@ -444,7 +446,7 @@
 														<select class="form-control" id="inputPlanet" name="inputPlanet">
 															<option value="">-- Any --</option>
 															<?php
-																$db = new database;
+																$db = new Database;
 																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM galaxy_planets ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){
@@ -584,7 +586,7 @@
 														<select class="form-control" id="inputClass" name="inputClass">
 															<option value="">-- Any --</option>
 															<?php
-																$db = new database;
+																$db = new Database;
 																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, class FROM entities_classes WHERE (uid LIKE '301:%' OR uid LIKE '302:%' OR uid LIKE '303:%') AND (class NOT LIKE 'CP Bonus%' AND class NOT LIKE 'Rare%' AND class <> 'Debris' AND class <> 'Wrecks') ORDER BY class ASC");
 																while($data = mysqli_fetch_assoc($query)){
@@ -602,7 +604,7 @@
 														<select class="form-control" id="inputType" name="inputType">
 															<option value="">-- Any --</option>
 															<?php
-																$db = new database;
+																$db = new Database;
 																$db->connect();
 																$query = mysqli_query($db->connection,"SELECT uid, name FROM entities ORDER BY name ASC");
 																while($data = mysqli_fetch_assoc($query)){

@@ -1,12 +1,11 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-
-	$db = new database;
-	$db->connect();
 		
 	if(isset($_POST['submit_definitions'])){
 		$title = mysqli_real_escape_string($db->connection, $_POST['inputTitle']);
@@ -40,9 +39,6 @@
 		$_SESSION['alert'] = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Site log settings have been updated.</div>";
 		header("Location: site_settings.php");
 	}
-	
-	$db->disconnect();
-	unset($db);
 ?>
 
 	<?php include("../assets/php/_head.php"); ?>
@@ -81,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12" style="overflow: auto;">
@@ -93,19 +89,19 @@
 								<form class="form-horizontal" method="post">
 									<div class="form-group">
 										<label class="col-sm-1" for="inputTitle">Title</label>
-										<div class="col-sm-11"><input type="text" class="form-control" name="inputTitle" value="<?php echo $_SESSION['site_title'];?>"></div>
+										<div class="col-sm-11"><input type="text" class="form-control" name="inputTitle" value="<?php echo $site->title;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-1" for="inputName">Name</label>
-										<div class="col-sm-11"><input type="text" class="form-control" name="inputName" value="<?php echo $_SESSION['site_name'];?>"></div>
+										<div class="col-sm-11"><input type="text" class="form-control" name="inputName" value="<?php echo $site->name;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-1" for="inputDescription">Description</label>
-										<div class="col-sm-11"><input type="text" class="form-control" name="inputDescription" value="<?php echo $_SESSION['site_description'];?>"></div>
+										<div class="col-sm-11"><input type="text" class="form-control" name="inputDescription" value="<?php echo $site->description;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-1" for="inputAuthor">Author</label>
-										<div class="col-sm-11"><input type="text" class="form-control" name="inputAuthor" value="<?php echo $_SESSION['site_author'];?>"></div>
+										<div class="col-sm-11"><input type="text" class="form-control" name="inputAuthor" value="<?php echo $site->author;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-1" for="inputFooter">Footer</label>
@@ -135,15 +131,15 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2" for="inputLoginRecords">Max Login Records</label>
-										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginRecords" value="<?php echo $_SESSION['site_login_logs'];?>"></div>
+										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginRecords" value="<?php echo $site->login_logs;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2" for="inputLoginFailures">Max Login Failures</label>
-										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginFailures" value="<?php echo $_SESSION['site_max_fails'];?>"></div>
+										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginFailures" value="<?php echo $site->max_fails;?>"></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2" for="inputLoginTimeout">Login Timeout (secs)</label>
-										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginTimeout" value="<?php echo $_SESSION['site_login_timeout'];?>"></div>
+										<div class="col-sm-10"><input type="text" class="form-control" name="inputLoginTimeout" value="<?php echo $site->login_timeout;?>"></div>
 									</div>
 									<input type="submit" class="btn btn-primary" name="submit_security" value="Save">
 								</form>
@@ -162,18 +158,18 @@
 										<label class="col-sm-2" for="inputMaxUserLogs">Max User Logs</label>
 										<div class="col-sm-10">
 											<select class="form-control" name="inputMaxUserLogs">
-												<option value="1" <?php if($_SESSION['max_user_logs'] == 1){echo "selected";} ?>>1 month</option>
-												<option value="2" <?php if($_SESSION['max_user_logs'] == 2){echo "selected";} ?>>2 months</option>
-												<option value="3" <?php if($_SESSION['max_user_logs'] == 3){echo "selected";} ?>>3 months</option>
-												<option value="4" <?php if($_SESSION['max_user_logs'] == 4){echo "selected";} ?>>4 months</option>
-												<option value="5" <?php if($_SESSION['max_user_logs'] == 5){echo "selected";} ?>>5 months</option>
-												<option value="6" <?php if($_SESSION['max_user_logs'] == 6){echo "selected";} ?>>6 months</option>
-												<option value="7" <?php if($_SESSION['max_user_logs'] == 7){echo "selected";} ?>>7 months</option>
-												<option value="8" <?php if($_SESSION['max_user_logs'] == 8){echo "selected";} ?>>8 months</option>
-												<option value="9" <?php if($_SESSION['max_user_logs'] == 9){echo "selected";} ?>>9 months</option>
-												<option value="10" <?php if($_SESSION['max_user_logs'] == 10){echo "selected";} ?>>10 months</option>
-												<option value="11" <?php if($_SESSION['max_user_logs'] == 11){echo "selected";} ?>>11 months</option>
-												<option value="12" <?php if($_SESSION['max_user_logs'] == 12){echo "selected";} ?>>12 months</option>
+												<option value="1" <?php if($site->user_logs == 1){echo "selected";} ?>>1 month</option>
+												<option value="2" <?php if($site->user_logs == 2){echo "selected";} ?>>2 months</option>
+												<option value="3" <?php if($site->user_logs == 3){echo "selected";} ?>>3 months</option>
+												<option value="4" <?php if($site->user_logs == 4){echo "selected";} ?>>4 months</option>
+												<option value="5" <?php if($site->user_logs == 5){echo "selected";} ?>>5 months</option>
+												<option value="6" <?php if($site->user_logs == 6){echo "selected";} ?>>6 months</option>
+												<option value="7" <?php if($site->user_logs == 7){echo "selected";} ?>>7 months</option>
+												<option value="8" <?php if($site->user_logs == 8){echo "selected";} ?>>8 months</option>
+												<option value="9" <?php if($site->user_logs == 9){echo "selected";} ?>>9 months</option>
+												<option value="10" <?php if($site->user_logs == 10){echo "selected";} ?>>10 months</option>
+												<option value="11" <?php if($site->user_logs == 11){echo "selected";} ?>>11 months</option>
+												<option value="12" <?php if($site->user_logs == 12){echo "selected";} ?>>12 months</option>
 											</select>
 										</div>
 									</div>
@@ -181,18 +177,18 @@
 										<label class="col-sm-2" for="inputMaxMachineLogs">Max Machine Logs</label>
 										<div class="col-sm-10">
 											<select class="form-control" name="inputMaxMachineLogs">
-												<option value="1" <?php if($_SESSION['max_machine_logs'] == 1){echo "selected";} ?>>1 month</option>
-												<option value="2" <?php if($_SESSION['max_machine_logs'] == 2){echo "selected";} ?>>2 months</option>
-												<option value="3" <?php if($_SESSION['max_machine_logs'] == 3){echo "selected";} ?>>3 months</option>
-												<option value="4" <?php if($_SESSION['max_machine_logs'] == 4){echo "selected";} ?>>4 months</option>
-												<option value="5" <?php if($_SESSION['max_machine_logs'] == 5){echo "selected";} ?>>5 months</option>
-												<option value="6" <?php if($_SESSION['max_machine_logs'] == 6){echo "selected";} ?>>6 months</option>
-												<option value="7" <?php if($_SESSION['max_machine_logs'] == 7){echo "selected";} ?>>7 months</option>
-												<option value="8" <?php if($_SESSION['max_machine_logs'] == 8){echo "selected";} ?>>8 months</option>
-												<option value="9" <?php if($_SESSION['max_machine_logs'] == 9){echo "selected";} ?>>9 months</option>
-												<option value="10" <?php if($_SESSION['max_machine_logs'] == 10){echo "selected";} ?>>10 months</option>
-												<option value="11" <?php if($_SESSION['max_machine_logs'] == 11){echo "selected";} ?>>11 months</option>
-												<option value="12" <?php if($_SESSION['max_machine_logs'] == 12){echo "selected";} ?>>12 months</option>
+												<option value="1" <?php if($site->machine_logs == 1){echo "selected";} ?>>1 month</option>
+												<option value="2" <?php if($site->machine_logs == 2){echo "selected";} ?>>2 months</option>
+												<option value="3" <?php if($site->machine_logs == 3){echo "selected";} ?>>3 months</option>
+												<option value="4" <?php if($site->machine_logs == 4){echo "selected";} ?>>4 months</option>
+												<option value="5" <?php if($site->machine_logs == 5){echo "selected";} ?>>5 months</option>
+												<option value="6" <?php if($site->machine_logs == 6){echo "selected";} ?>>6 months</option>
+												<option value="7" <?php if($site->machine_logs == 7){echo "selected";} ?>>7 months</option>
+												<option value="8" <?php if($site->machine_logs == 8){echo "selected";} ?>>8 months</option>
+												<option value="9" <?php if($site->machine_logs == 9){echo "selected";} ?>>9 months</option>
+												<option value="10" <?php if($site->machine_logs == 10){echo "selected";} ?>>10 months</option>
+												<option value="11" <?php if($site->machine_logs == 11){echo "selected";} ?>>11 months</option>
+												<option value="12" <?php if($site->machine_logs == 12){echo "selected";} ?>>12 months</option>
 											</select>
 										</div>
 									</div>

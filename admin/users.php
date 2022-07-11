@@ -1,14 +1,13 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
 	if(isset($_GET['d'])){
-		$db = new database;
-		$db->connect();
 		$user_id = mysqli_real_escape_string($db->connection, $_GET['d']);
 		mysqli_query($db->connection, "DELETE FROM users WHERE user_id = '$user_id'");
 		mysqli_query($db->connection, "DELETE FROM users_privs WHERE user_id = '$user_id'");
@@ -61,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -70,9 +69,6 @@
                                 <h2>Users</h2>
                             </div>
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$users = mysqli_query($db->connection,"SELECT * FROM users LEFT JOIN users_privs ON users.user_id = users_privs.user_id WHERE username LIKE '%".$search."%' OR first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%' OR email LIKE '%".$search."%' ORDER BY username");

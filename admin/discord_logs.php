@@ -1,14 +1,12 @@
 <?php
 	
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/paginator.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	$max_user_logs = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'max_user_logs'"))['value'];
 	$time = swc_time(time(), TRUE)['timestamp'] - ($max_user_logs * 2628288);
@@ -54,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -64,9 +62,6 @@
                             </div>							
 							
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$search_string = "SELECT * FROM logs_discord WHERE discord_id LIKE '%".$search."%' OR type LIKE '%".$search."%' OR keywords LIKE '%".$search."%' ORDER BY timestamp DESC";
@@ -81,8 +76,6 @@
 								echo "<span class=\"form-inline\">".$pages->display_jump_menu().$pages->display_items_per_page()."</span>";
 								echo '</div>';
 								echo '<div class="clearfix"></div>';
-								$db = new database;
-								$db->connect();
 								$limit = $pages->limit_start.','.$pages->limit_end;
 								$query = mysqli_query($db->connection,$search_string." LIMIT ".$limit);
 								

@@ -1,8 +1,5 @@
 <?php
 
-$db = new database;
-$db->connect();
-
 $from = mysqli_real_escape_string($db->connection, $_GET['inputFrom']);
 $to = mysqli_real_escape_string($db->connection, $_GET['inputTo']);
 $controlledBy = mysqli_real_escape_string($db->connection, $_GET['inputControlled']);

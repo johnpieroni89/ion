@@ -27,8 +27,6 @@
 			<th>Date</th>
 		</tr>
 	";
-	$db = new database;
-	$db->connect();
 	$query = mysqli_query($db->connection,$search_string_current);
 	while($data = mysqli_fetch_assoc($query)){
 		$query_sectors = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT COUNT(uid) as count FROM galaxy_sectors WHERE controlled_by = '".$data['controlled_by']."'"))["count"];
@@ -72,8 +70,6 @@
 				</tr>";
 		$count++;
 	}
-	$db->disconnect();
-	unset($db);
 	echo "</table>";
 	if($_SESSION['user_privs']['galaxydata_delete'] > 0 || $_SESSION['user_privs']['admin'] > 0){
 		echo "

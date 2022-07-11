@@ -1,7 +1,4 @@
 <?php
-
-	$db = new database;
-	$db->connect();
 	$query_buffer = mysqli_query($db->connection, "SELECT data_signalsanalysis_activity.*, users.username FROM data_signalsanalysis_activity LEFT JOIN users ON users.user_id = data_signalsanalysis_activity.activity_collector WHERE data_signalsanalysis_activity.status = '0' ORDER BY activity_time DESC");
 	if(mysqli_num_rows($query_buffer) != 0){
 		if($_SESSION["user_privs"]["admin"] > 0){$admin_buffer_head = "<th>Collector</th>";}else{$admin_buffer_head = "";}

@@ -1,5 +1,5 @@
 <?php 
-	include("../assets/php/database.php");
+	include("../assets/php/classes/Database.php");
 	include("../assets/php/functions.php");
 	include("../assets/php/session.php");
 	include("../assets/php/acct/check.php");
