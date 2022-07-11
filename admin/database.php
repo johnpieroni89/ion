@@ -1,39 +1,35 @@
 <?php 
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/acct/check.php");
-	include("../assets/php/functions.php");
+    include("../autoload.php");
+    global $db;
+    global $session;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(isset($_POST['type'])){
 		if($_POST["type"] == "sectors"){
-			include("../assets/php/swc_api/galaxy_sectors.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all sectors have been updated.</div>";
+			SwcApiProcessor::scan_galaxy_sectors();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all sectors have been updated.</div>";
 		}elseif($_POST["type"] == "systems"){
-			include("../assets/php/swc_api/galaxy_systems.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all systems have been updated.</div>";
+		    SwcApiProcessor::scan_galaxy_systems();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all systems have been updated.</div>";
 		}elseif($_POST["type"] == "planets"){
-			include("../assets/php/swc_api/galaxy_planets.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all planets have been updated.</div>";
+		    SwcApiProcessor::scan_galaxy_planets();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all planets have been updated.</div>";
 		}elseif($_POST["type"] == "entities"){
-			include("../assets/php/swc_api/entities.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all entity types have been updated.</div>";
+		    SwcApiProcessor::scan_entity_types();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all entity types have been updated.</div>";
 		}elseif($_POST["type"] == "classes"){
-			include("../assets/php/swc_api/entities_classes.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all entity classes have been updated.</div>";
+		    SwcApiProcessor::scan_entity_classes();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all entity classes have been updated.</div>";
 		}elseif($_POST["type"] == "races"){
-			include("../assets/php/swc_api/entities_races.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all races have been updated.</div>";
+		    SwcApiProcessor::scan_entity_races();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all races have been updated.</div>";
 		}elseif($_POST["type"] == "factions"){
-			include("../assets/php/swc_api/factions.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all factions have been updated.</div>";
+		    SwcApiProcessor::scan_factions();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all factions have been updated.</div>";
 		}elseif($_POST["type"] == "stations"){
-			include("../assets/php/swc_api/scanner_stations.php");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all public space stations have been updated.</div>";
+		    SwcApiProcessor::scan_galaxy_stations();
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Reference tables for all public space stations have been updated.</div>";
 		}
 	}elseif(isset($_POST['changeOwner'])){
 		$former = ucwords(mysqli_real_escape_string($db->connection, $_POST['inputFormer']));
@@ -41,10 +37,10 @@
 		if(!empty($former) && !empty($current)){
 			$total = mysqli_num_rows(mysqli_query($db->connection, "SELECT uid FROM data_signalsanalysis WHERE owner = '$former'"));
 			mysqli_query($db->connection, "UPDATE data_signalsanalysis SET owner = '$current' WHERE owner = '$former'");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">$total records have been changed to being owned by $current.</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">$total records have been changed to being owned by $current.</div>";
 			mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '7', \"$total records have been changed from being owned by $former to $current\", '".swc_time(time(),TRUE)["timestamp"]."')");
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">You must enter a former and current owner to make changes.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">You must enter a former and current owner to make changes.</div>";
 		}
 	}
 	
@@ -121,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">

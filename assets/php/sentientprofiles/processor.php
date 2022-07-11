@@ -4,7 +4,7 @@ if(isset($_POST['raceUpdate'])){
 	$race_uid = mysqli_real_escape_string($db->connection, $_POST['raceUpdate']);
 	mysqli_query($db->connection, "UPDATE characters SET race_uid = '".$race_uid."' WHERE uid = '1:$uid'");
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: User updated the race for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a>.', '".swc_time(time(),TRUE)["timestamp"]."')");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The race for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a> has been updated</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The race for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a> has been updated</div>";
 }
 
 if(isset($_POST['submitSkills'])){
@@ -48,7 +48,7 @@ if(isset($_POST['submitSkills'])){
 		mysqli_query($db->connection, "UPDATE characters_skills SET strength = '$strength', dexterity = '$dexterity', speed = '$speed', dodge = '$dodge', projectiles = '$projectiles', nonprojectiles = '$nonprojectiles', medical = '$medical', diplomacy = '$diplomacy', crafting = '$crafting', management = '$management', perception = '$perception', stealth = '$stealth', metallurgy = '$metallurgy', electronics = '$electronics', engines = '$engines', weapons = '$weapons', repair = '$repair', computers = '$computers', fighter_p = '$fighter_p', fighter_c = '$fighter_c', capital_p = '$capital_p', capital_c = '$capital_c', space_command = '$space_command', vehicle_p = '$vehicle_p', vehicle_c = '$vehicle_c', infantry_command = '$infantry_command', vehicle_command = '$vehicle_command', heavy = '$heavy' WHERE character_uid = '1:$uid'");
 	}
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: Skill have been updated for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a>.', '".swc_time(time(),TRUE)["timestamp"]."')");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Skills have been updated for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a>.</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Skills have been updated for <a target=\"blank\" href=\"../profile.php?uid=$uid\">$handle</a>.</div>";
 }
 
 if(isset($_POST['submitAssociation'])){
@@ -83,7 +83,7 @@ if(isset($_POST['submitAssociation'])){
 			mysqli_query($db->connection, "INSERT INTO characters_associations (user_id, character_uid, handle, association) VALUES ('".$_SESSION['user_id']."', '$associate_uid', '$handle', 'Subordinate')");
 		}
 	}
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An association for $handle has been updated</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An association for $handle has been updated</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: An association for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=4\">$handle</a> has been updated', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 
@@ -95,7 +95,7 @@ if(isset($_POST['submitFaction'])){
 	}else{
 		mysqli_query($db->connection, "UPDATE characters_faction SET faction = '$newFaction' WHERE character_uid = '1:$uid'");
 	}
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The current faction for $handle has been updated</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The current faction for $handle has been updated</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: Current faction for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=4\">$handle</a> has been updated', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 
@@ -105,7 +105,7 @@ if(isset($_POST['submitAffiliation'])){
 	$note = mysqli_real_escape_string($db->connection, $_POST['inputNote']);
 	$check = mysqli_query($db->connection, "SELECT * FROM characters_faction WHERE character_uid = '1:$uid'");
 	mysqli_query($db->connection, "INSERT INTO characters_affiliations (character_uid, faction, date, note) VALUES ('1:$uid', '$affiliation', '$date', '$note')");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A new affiliation for $handle has been added</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A new affiliation for $handle has been added</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: A new affiliation for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=4\">$handle</a> has been added', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 
@@ -114,14 +114,14 @@ if(isset($_GET['deleteAssoc']) && (!empty($_SESSION['user_privs']['admin']) || !
 	$associate_uid = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT uid FROM characters WHERE handle = '$associate'"))['uid'];
 	mysqli_query($db->connection, "DELETE FROM characters_associations WHERE character_uid = '1:$uid' AND handle = '$associate'");
 	mysqli_query($db->connection, "DELETE FROM characters_associations WHERE character_uid = '$associate_uid' AND handle = '$handle'");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An association for $handle has been deleted</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An association for $handle has been deleted</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: An association for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=4\">$handle</a> has been deleted', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 
 if(isset($_GET['deleteAffil']) && (!empty($_SESSION['user_privs']['admin']) || !empty($_SESSION['user_privs']['sentientprofiles_delete']))){
 	$id = mysqli_real_escape_string($db->connection, $_GET['deleteAffil']);
 	mysqli_query($db->connection, "DELETE FROM characters_affiliations WHERE character_uid = '1:$uid' AND id = '$id'");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An affiliation for $handle has been deleted</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">An affiliation for $handle has been deleted</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: An affiliation for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=4\">$handle</a> has been deleted', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 
@@ -129,10 +129,10 @@ if(isset($_POST['submitNote'])){
 	$details = mysqli_real_escape_string($db->connection, $_POST['inputDetails']);
 	if($details != ""){
 		mysqli_query($db->connection, "INSERT INTO characters_notes (character_uid, timestamp, author, note_details) VALUES ('1:$uid', '".swc_time(time(),TRUE)["timestamp"]."', '".$_SESSION['user_id']."', '$details')");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A note has been added.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A note has been added.</div>";
 		mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: A new note for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=7\">$handle</a> has been added', '".swc_time(time(),TRUE)["timestamp"]."')");
 	}else{
-		$alert = "<div class=\"alert alert-danger\" style=\"font-size:14px;\">You cannot submit a blank note!</div>";
+		$session->alert = "<div class=\"alert alert-danger\" style=\"font-size:14px;\">You cannot submit a blank note!</div>";
 	}
 }
 
@@ -140,17 +140,17 @@ if(isset($_POST['submitVerify'])){
 	$comment = mysqli_real_escape_string($db->connection, $_POST['inputComment']);
 	if($comment != ""){
 		mysqli_query($db->connection, "UPDATE characters_notes SET verified = '1', verifier = '".$_SESSION['user_id']."', verify_note = '$comment'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The note has been verified.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">The note has been verified.</div>";
 		mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: A note for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=7\">$handle</a> has been verified', '".swc_time(time(),TRUE)["timestamp"]."')");
 	}else{
-		$alert = "<div class=\"alert alert-danger\" style=\"font-size:14px;\">You cannot submit a blank comment!</div>";
+		$session->alert = "<div class=\"alert alert-danger\" style=\"font-size:14px;\">You cannot submit a blank comment!</div>";
 	}
 }
 
 if(isset($_GET['deleteNote']) && (!empty($_SESSION['user_privs']['admin']) || !empty($_SESSION['user_privs']['sentientprofiles_delete']))){
 	$id = mysqli_real_escape_string($db->connection, $_GET['deleteNote']);
 	mysqli_query($db->connection, "DELETE FROM characters_notes WHERE note_id = '$id'");
-	$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A note for $handle has been deleted</div>";
+	$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A note for $handle has been deleted</div>";
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '0', 'UPDATE: A note for <a target=\"blank\" href=\"../profile.php?uid=$uid&view=7\">$handle</a> has been deleted', '".swc_time(time(),TRUE)["timestamp"]."')");
 }
 

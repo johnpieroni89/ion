@@ -1,8 +1,5 @@
 <?php
 
-$db = new database;
-$db->connect();
-
 if(($_SESSION['user_privs']['admin'] == 0 && $_SESSION['user_privs']['reporting_view'] == 0) || ($_SESSION['user_privs']['reporting_view'] == 1 && $_SESSION['user_id'] != $reportData['author'])){
 	header("Location: reporting.php?view=2");
 }else if($_SESSION['user_privs']['admin'] < 1 && $_SESSION['user_privs']['reporting_view'] != 3){

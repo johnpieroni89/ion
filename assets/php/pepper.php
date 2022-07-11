@@ -1,1 +1,0 @@
-<?php $password_pepper = "joVP89&$#cLTz2ECRMy6HA!Pu2e^%SPO";?>

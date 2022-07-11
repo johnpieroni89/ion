@@ -1,6 +1,4 @@
 <?php
-$db = new database;
-$db->connect();
 $data = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM characters_skills WHERE character_uid = '1:$uid'"));
 
 if($data['strength'] == ""){ $strength = "?"; }else{ $strength = $data['strength']; }

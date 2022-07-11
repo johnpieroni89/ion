@@ -1,8 +1,4 @@
-<?php
-
-	$db = new database;
-	$db->connect();
-	
+<?php	
 	$total_information_needs = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(need_id) as count FROM reporting_needs"))["count"];
 	$total_information_needs_reports = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(id) as count FROM reporting_reports_coi"))["count"];
 	$total_reports = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(report_id) as count FROM reporting_reports"))["count"];

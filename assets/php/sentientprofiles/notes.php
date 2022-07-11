@@ -7,8 +7,6 @@
 		<table class="table table-bordered table-striped table-responsive table-hover">
 			<tr><th class="col-xs-2">Timestamp</th><th class="col-xs-6">Note</th><th class="col-xs-2">Status</th><th class="col-xs-2 hidden-print">Actions</th></tr>
 			<?php
-				$db = new database;
-				$db->connect();
 				$query = mysqli_query($db->connection,"SELECT * FROM characters_notes LEFT JOIN users ON characters_notes.author = users.user_id WHERE characters_notes.character_uid = '1:$uid' ORDER BY characters_notes.timestamp DESC");
 				if(mysqli_num_rows($query) != 0){
 					while($data = mysqli_fetch_assoc($query)){

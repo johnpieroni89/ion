@@ -1,8 +1,6 @@
 <?php
-error_reporting(0);
-include("../database.php");
-$db = new database;
-$db->connect();
+include("../../../autoload.php");
+global $db;
 
 mysqli_query($db->connection,"DELETE FROM data_galaxydata_planets WHERE timestamp <= '".(time() - 31449600)."'");
 $time = time();

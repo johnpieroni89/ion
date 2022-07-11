@@ -12,8 +12,6 @@
 				<datalist id="factions" id="inputFaction">
 					<option value="">Select Faction</option>";
 					<?php
-						$db = new database;
-						$db->connect();
 						$query = mysqli_query($db->connection,"SELECT name FROM factions ORDER BY name ASC");
 						while($row = mysqli_fetch_assoc($query)){
 							echo "<option value=\"".$row['name']."\">".$row['name']."</option>";
@@ -35,8 +33,6 @@
 		
 		<table class="table table-bordered table-striped table-responsive table-hover"><tr><th>Affiliation</th><th>Date</th><th>Notes</th><th class="hidden-print">Action</th></tr>
 			<?php
-				$db = new database;
-				$db->connect();
 				$query = mysqli_query($db->connection,"SELECT characters_affiliations.id, characters_affiliations.faction, characters_affiliations.date, characters_affiliations.note, characters.* FROM characters_affiliations LEFT JOIN characters ON characters.uid = characters_affiliations.character_uid WHERE characters_affiliations.character_uid = '1:$uid' ORDER BY characters_affiliations.date DESC, characters_affiliations.id DESC");
 				if(mysqli_num_rows($query) != 0){
 					while($data = mysqli_fetch_assoc($query)){
@@ -48,10 +44,7 @@
 					}
 				}else{
 					echo "<tr><td colspan=\"4\"><center><h2>No data</h2></center></td></tr>";
-				}
-
-				
-				
+				}				
 			?>
 		</table>
 	</div>

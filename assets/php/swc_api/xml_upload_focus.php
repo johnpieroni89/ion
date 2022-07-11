@@ -1,4 +1,7 @@
 <?php
+global $db;
+global $session;
+
 if($_SESSION['user_privs']['signalsanalysis_upload'] == 1 && $_SESSION['user_privs']['admin'] == 0){
 	$upload_db = "buffer";
 	$upload_activity = 0;
@@ -98,11 +101,11 @@ if($check_activity == 0){
 				add_character($item->name);
 				mysqli_query($db->connection, "INSERT INTO data_tracking (target, confidence, `source`, timestamp, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy) VALUES ('$ownerName', '3', '$activity', '$activity_time', ".(($sector==NULL)?"NULL":("'".$sector."'")).", '$galx', '$galy', ".(($system==NULL)?"NULL":("'".$system."'")).", '$sysx', '$sysy', ".(($planet_ins==NULL)?"NULL":("'".$planet_ins."'")).", ".(($atmox==NULL)?"NULL":("'".$atmox."'")).", ".(($atmoy==NULL)?"NULL":("'".$atmoy."'")).", ".(($groundx==NULL)?"NULL":("'".$groundx."'")).", ".(($groundy==NULL)?"NULL":("'".$groundy."'")).")");
 			}else{
-				$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity is corrupted and was not ingested!</div>";
+				$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity is corrupted and was not ingested!</div>";
 			}
 		}elseif($entity["count"] == 0){ // INSERT
 			mysqli_query($db->connection,"INSERT INTO data_signalsanalysis (uid, name, type, owner, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy, passengers, ships, vehicles, timestamp, activity) VALUES ('$entityID', '$name', '$entityType', '$ownerName', ".(($sector==NULL)?"NULL":("'".$sector."'")).", '$galx', '$galy', ".(($system==NULL)?"NULL":("'".$system."'")).", '$sysx', '$sysy', ".(($planet_ins==NULL)?"NULL":("'".$planet_ins."'")).", ".(($atmox==NULL)?"NULL":("'".$atmox."'")).", ".(($atmoy==NULL)?"NULL":("'".$atmoy."'")).", ".(($groundx==NULL)?"NULL":("'".$groundx."'")).", ".(($groundy==NULL)?"NULL":("'".$groundy."'")).", '$passengers', '$ships', '$vehicles', '$activity_time', '$activity_id')");
-			$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been added from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>!</div>";
+			$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been added from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>!</div>";
 			mysqli_query($db->connection,"UPDATE data_signalsanalysis_activity SET added = '1' WHERE id = '$activity_id'");
 		}elseif($entity["timestamp"] < $activity_time){ // UPDATE
 			mysqli_query($db->connection,"INSERT INTO data_signalsanalysis_archive (uid, name, type, owner, manager, operator, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy, passengers, ships, vehicles, timestamp, activity) VALUES ('".$entity["uid"]."', '".$entity["name"]."', '".$entity["type"]."', '".$entity["owner"]."', ".(($entity["manager"]==NULL)?"NULL":("'".$entity["manager"]."'")).", ".(($entity["operator"]==NULL)?"NULL":("'".$entity["operator"]."'")).", ".(($entity["sector"]==NULL)?"NULL":("'".$entity["sector"]."'")).", '".$entity["galx"]."', '".$entity["galy"]."', ".(($entity["system"]==NULL)?"NULL":("'".$entity["system"]."'")).", '".$entity["sysx"]."', '".$entity["sysy"]."', ".(($entity["planet"]==NULL)?"NULL":("'".$entity["planet"]."'")).", ".(($entity["atmox"]==NULL)?"NULL":("'".$entity["atmox"]."'")).", ".(($entity["atmoy"]==NULL)?"NULL":("'".$entity["atmoy"]."'")).", ".(($entity["surfx"]==NULL)?"NULL":("'".$entity["surfx"]."'")).", ".(($entity["surfy"]==NULL)?"NULL":("'".$entity["surfy"]."'")).", ".(($entity["passengers"]==NULL)?"NULL":("'".$entity["passengers"]."'")).", ".(($entity["ships"]==NULL)?"NULL":("'".$entity["ships"]."'")).", ".(($entity["vehicles"]==NULL)?"NULL":("'".$entity["vehicles"]."'")).", '".$entity["timestamp"]."', ".(($entity["activity"]==NULL)?"NULL":("'".$entity["activity"]."'")).")");
@@ -110,13 +113,13 @@ if($check_activity == 0){
 			if($archives > 10){mysqli_query($db->connection,"DELETE FROM data_signalsanalysis_archive WHERE uid = '$entityID' ORDER BY timestamp DESC LIMIT 1");}
 			mysqli_query($db->connection,"DELETE FROM data_signalsanalysis WHERE uid = '$entityID'");
 			mysqli_query($db->connection,"INSERT INTO data_signalsanalysis (uid, name, type, owner, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy, passengers, ships, vehicles, timestamp, activity) VALUES ('$entityID', '$name', '$entityType', '$ownerName', ".(($sector==NULL)?"NULL":("'".$sector."'")).", '$galx', '$galy', ".(($system==NULL)?"NULL":("'".$system."'")).", '$sysx', '$sysy', ".(($planet_ins==NULL)?"NULL":("'".$planet_ins."'")).", ".(($atmox==NULL)?"NULL":("'".$atmox."'")).", ".(($atmoy==NULL)?"NULL":("'".$atmoy."'")).", ".(($groundx==NULL)?"NULL":("'".$groundx."'")).", ".(($groundy==NULL)?"NULL":("'".$groundy."'")).", '$passengers', '$ships', '$vehicles', '$activity_time', '$activity_id')");
-			$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been updated from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>!</div>";
+			$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been updated from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>!</div>";
 			mysqli_query($db->connection,"UPDATE data_signalsanalysis_activity SET updated = '1' WHERE id = '$activity_id'");
 		}else{ // OLD
 			mysqli_query($db->connection,"INSERT INTO data_signalsanalysis_archive (uid, name, type, owner, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy, passengers, ships, vehicles, timestamp, activity) VALUES ('$entityID', '$name', '$entityType', '$ownerName', ".(($sector==NULL)?"NULL":("'".$sector."'")).", '$galx', '$galy', ".(($system==NULL)?"NULL":("'".$system."'")).", '$sysx', '$sysy', ".(($planet_ins==NULL)?"NULL":("'".$planet_ins."'")).", ".(($atmox==NULL)?"NULL":("'".$atmox."'")).", ".(($atmoy==NULL)?"NULL":("'".$atmoy."'")).", ".(($groundx==NULL)?"NULL":("'".$groundx."'")).", ".(($groundy==NULL)?"NULL":("'".$groundy."'")).", '$passengers', '$ships', '$vehicles', '$activity_time', '$activity_id')");
 			$archives = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT COUNT(uid) as count FROM data_signalsanalysis_archive WHERE uid = '$entityID'"))["count"];
 			if($archives > 10){mysqli_query($db->connection,"DELETE FROM data_signalsanalysis_archive WHERE uid = '$entityID' ORDER BY timestamp DESC LIMIT 1");}
-			$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been archived from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a></div>";
+			$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - 1 entity has been archived from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a></div>";
 		}
 	}elseif($upload_db == "buffer"){
 		mysqli_query($db->connection,"INSERT INTO data_signalsanalysis_buffer (uid, name, type, owner, sector, galx, galy, `system`, sysx, sysy, planet, atmox, atmoy, surfx, surfy, passengers, ships, vehicles, timestamp, activity) VALUES ('$entityID', '$name', '$entityType', '$ownerName', ".(($sector==NULL)?"NULL":("'".$sector."'")).", '$galx', '$galy', ".(($system==NULL)?"NULL":("'".$system."'")).", '$sysx', '$sysy', ".(($planet_ins==NULL)?"NULL":("'".$planet_ins."'")).", ".(($atmox==NULL)?"NULL":("'".$atmox."'")).", ".(($atmoy==NULL)?"NULL":("'".$atmoy."'")).", ".(($groundx==NULL)?"NULL":("'".$groundx."'")).", ".(($groundy==NULL)?"NULL":("'".$groundy."'")).", '$passengers', '$ships', '$vehicles', '$activity_time', '$activity_id')");
@@ -125,7 +128,7 @@ if($check_activity == 0){
 	$update_log = mysqli_real_escape_string($db->connection, "UPLOAD: 1 record was submitted from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>");
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', '$update_log', '".swc_time(time(),TRUE)["timestamp"]."')");
 }else{
-	$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (<a href=\"signalsanalysis.php?activity=".$activity."\">".$activity."</a>)</div>";
+	$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (<a href=\"signalsanalysis.php?activity=".$activity."\">".$activity."</a>)</div>";
 }
 
 ?>

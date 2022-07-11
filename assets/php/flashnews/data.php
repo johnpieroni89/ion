@@ -1,7 +1,5 @@
 <?php
-	$db = new database;
-	$db->connect();
-	
+    global $db;
 	if(isset($_POST['search'])){
 		$search = $_POST['search'];
 		$query = "SELECT title, description, timestamp FROM flashnews WHERE title LIKE '%$search%' OR description LIKE '%$search%' ORDER BY timestamp DESC";

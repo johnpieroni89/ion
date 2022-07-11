@@ -1,8 +1,5 @@
 <?php
 
-$db = new database;
-$db->connect();
-
 if($_GET['serial'] != ""){
 	$serial = mysqli_real_escape_string($db->connection, $_GET['serial']);
 	$reportData = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT * FROM reporting_reports WHERE serial = '".$serial."'"));

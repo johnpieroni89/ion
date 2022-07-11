@@ -15,8 +15,6 @@
 			<th align=\"right\">Avg Tax Lvl</th>
 		</tr>
 	";
-	$db = new database;
-	$db->connect();
 	$query = mysqli_query($db->connection,$search_string);
 	while($data = mysqli_fetch_assoc($query)){
 		$query_sectors = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT COUNT(uid) as count FROM galaxy_sectors WHERE controlled_by = '".$data['controlled_by']."'"))["count"];
@@ -36,8 +34,6 @@
 			mysqli_query($db->connection,"INSERT INTO data_galaxydata (faction, total_population, sectors, systems, planets, avg_population, avg_civilization, avg_tax, total_tax_income, timestamp) VALUES ('".$data['faction']."', '".$data['pop']."', '".$query_sectors."', '".$query_systems."', '".$data['planets']."', '".$data['pop'] / $data['planets']."', '".number_format($data['civ'],2)."', '".number_format($data['taxes'],2)."', '".$data['taxIncome']."', '".time()."')");
 		}
 	}
-	$db->disconnect();
-	unset($db);
 	echo "</table>";
 
 ?>

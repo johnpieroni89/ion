@@ -76,10 +76,10 @@ if($check_activity == 0){
 		$count++;
 	}
 	
-	$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_new." entities have been added, ".$count_update." entities have been updated, ".$count_archive." entities have been archived, and ".$count_corrupt." entities are corrupted and weren't ingested!</div>";
+	$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_new." entities have been added, ".$count_update." entities have been updated, ".$count_archive." entities have been archived, and ".$count_corrupt." entities are corrupted and weren't ingested!</div>";
 	mysqli_query($db->connection,"UPDATE data_signalsanalysis_activity SET added = '$count_new', updated = '$count_update' WHERE id = '$activity_id'");
 	
 }else{
-	$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (".$activity.")</div>";
+	$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (".$activity.")</div>";
 }
 ?>

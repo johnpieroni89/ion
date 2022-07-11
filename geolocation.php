@@ -1,18 +1,16 @@
 <?php
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
+    include("autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	
 	if ($_SESSION['user_privs']['geolocation'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
 		header("Location: index.php");
 	}
 	
 	if(isset($_POST['submit'])){
-		$db = new database;
-		$db->connect();
 		$target = mysqli_real_escape_string($db->connection, $_POST['inputTarget']);
 		$confidence = mysqli_real_escape_string($db->connection, $_POST['inputConfidence']);
 		$date = mysqli_real_escape_string($db->connection, $_POST['inputDate']);
@@ -76,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block">

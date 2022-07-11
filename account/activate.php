@@ -1,11 +1,11 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/session.php");
-	include("../assets/php/acct/activate.php");
+    include("../autoload.php");
 	
 	if(isset($_SESSION['user_id'])){
 		header("Location: ../index.php");
+	}
+	if(isset($_POST['activate'])){
+	    $account->activate();
 	}
 ?>
 
@@ -15,10 +15,10 @@
 		<div id="login-container">
 			<!-- Activate Header -->
 			<h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
-				<strong><?php echo $_SESSION['site_name'];?></strong><br>
+				<strong><?php echo $site->name;?></strong><br>
 				<i class="fas fa-clipboard-check"></i> <strong>Account Activation</strong>
 			</h1>
-			<?php if(isset($alert)){echo $alert;} ?>
+			<?php if(isset($session->alert)){echo $session->alert;} ?>
 			<!-- END Activate Header -->
 
 			<!-- Activate Block -->
@@ -51,7 +51,7 @@
 
 			<!-- Footer -->
 			<footer class="text-muted text-center animation-pullUp">
-				<?php echo $_SESSION['site_footer']; ?>
+				<?php echo $site->footer; ?>
 			</footer>
 			<!-- END Footer -->
 		</div>

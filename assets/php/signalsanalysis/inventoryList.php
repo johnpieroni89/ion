@@ -1,7 +1,4 @@
 <?php
-
-	$db = new database;
-	$db->connect();
 	$query_types = mysqli_query($db->connection,"SELECT * FROM entities_classes WHERE (uid LIKE '301:%' OR uid LIKE '302:%' OR uid LIKE '303:%') AND (class NOT LIKE 'CP Bonus%' AND class NOT LIKE 'Rare%' AND class <> 'Debris' AND class <> 'Wrecks')");
 	echo "<center><h1><b>".ucwords($owner)." assets</b></h1></center><div class=\"col-sm-6 col-sm-offset-3\">";
 	while($type = mysqli_fetch_assoc($query_types)){
@@ -32,5 +29,4 @@
 		echo "</table>";
 	}else{}
 	echo "</div>";
-
 ?>

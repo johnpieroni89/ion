@@ -1,4 +1,7 @@
 <?php
+global $db;
+global $session;
+
 if($_SESSION['user_privs']['signalsanalysis_upload'] == 1 && $_SESSION['user_privs']['admin'] == 0){
 	$upload_db = "buffer";
 	$upload_activity = 0;
@@ -6,9 +9,6 @@ if($_SESSION['user_privs']['signalsanalysis_upload'] == 1 && $_SESSION['user_pri
 	$upload_db = "live";
 	$upload_activity = 1;
 }
-
-$db = new database;
-$db->connect();
 	
 //Timeing data
 $year = $xml_file->channel->cgt->years;
@@ -181,12 +181,12 @@ if($check_activity == 0){
 		
 	}
 	
-	$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_new." new records, ".$count_update." updated records, and ".$count_archive." archived records were submitted from <a href=\"signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a></div>";
+	$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - ".$count_new." new records, ".$count_update." updated records, and ".$count_archive." archived records were submitted from <a href=\"signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a></div>";
 	mysqli_query($db->connection,"UPDATE data_signalsanalysis_activity SET added = '$count_new', updated = '$count_update' WHERE id = '$activity_id'");
 	$update_log = mysqli_real_escape_string($db->connection, "UPLOAD: ".$count_new." new records, ".$count_update." updated records, and ".$count_archive." archived records were submitted from <a href=\"../signalsanalysis.php?activity=".$activity."\" target=\"_blank\">".$activity."</a>");
 	mysqli_query($db->connection, "INSERT INTO logs_activities (user_id, log_type, details, timestamp) VALUES ('".$_SESSION['user_id']."', '1', '$update_log', '".swc_time(time(),TRUE)["timestamp"]."')");
 }else{
-	$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (<a href=\"signalsanalysis.php?activity=".$activity."\">".$activity."</a>)</div>";
+	$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Data already has been ingested from this activity (<a href=\"signalsanalysis.php?activity=".$activity."\">".$activity."</a>)</div>";
 }
 
 ?>

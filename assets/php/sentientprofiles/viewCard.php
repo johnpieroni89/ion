@@ -1,8 +1,4 @@
 <?php
-
-$db = new database;
-$db->connect();
-
 if(!isset($_GET['uid'])){ header("Location: sentientprofiles.php"); }
 $uid = mysqli_real_escape_string($db->connection, $_GET['uid']);
 $img = "http://custom.swcombine.com/static/1/$uid-100-100.jpg";

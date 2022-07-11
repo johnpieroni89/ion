@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
 
-        <title><?php echo $_SESSION['site_title']; ?></title>
+        <title><?php echo $site->title; ?></title>
 
-        <meta name="description" content="<?php echo $_SESSION['site_description']; ?>">
-        <meta name="author" content="<?php echo $_SESSION['site_author']; ?>">
+        <meta name="description" content="<?php echo $site->description; ?>">
+        <meta name="author" content="<?php echo $site->author; ?>">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
@@ -19,13 +19,9 @@
         <!-- END Icons -->
 
 		<?php
-		$db = new database;
-		$db->connect();
 		$plugin_bootstrap3_css = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_bootstrap3_css'"));
 		$plugin_fontawesome = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_fontawesome'"));
 		$plugin_modernizr = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT value FROM site_settings WHERE field = 'plugin_modernizr'"));
-		$db->disconnect();
-		unset($db);
 		?>
 
         <!-- Stylesheets -->
@@ -34,7 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo $plugin_fontawesome['value']; ?>"> <!-- Fontawesome -->
         <link rel="stylesheet" type="text/css" href="<?php if(glob("assets/css/plugins.css")){ echo "assets/css/plugins.css";}else{echo "../assets/css/plugins.css";} ?>"> <!-- Related styles of various icon packs and plugins-->
         <link rel="stylesheet" type="text/css" href="<?php if(glob("assets/css/main.css")){ echo "assets/css/main.css";}else{echo "../assets/css/main.css";} ?>"> <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" type="text/css" href="<?php if(glob("assets/css/themes/".$_SESSION['site_style'].".css")){ echo "assets/css/themes/".$_SESSION['site_style'].".css";}else{echo "../assets/css/themes/".$_SESSION['site_style'].".css";} ?>">
+        <link rel="stylesheet" type="text/css" href="<?php if(glob("assets/css/themes/".$site->style.".css")){ echo "assets/css/themes/".$site->style.".css";}else{echo "../assets/css/themes/".$site->style.".css";} ?>">
         <!-- END Stylesheets -->
 		
 		<style>

@@ -1,7 +1,4 @@
-<?php
-	$db = new database;
-	$db->connect();
-	
+<?php	
 	if(isset($_POST['search'])){
 		$search = $_POST['search'];
 		$query = "SELECT DISTINCT timestamp, order_id, buyer, seller, price, assets, source FROM transactions WHERE order_id LIKE '%$search%' OR buyer LIKE '%$search%' OR seller LIKE '%$search%' OR price LIKE '%$search%' OR assets LIKE '%$search%' OR source LIKE '%$search%' ORDER BY timestamp DESC, order_id DESC";

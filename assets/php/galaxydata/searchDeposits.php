@@ -1,7 +1,4 @@
 <?php
-	$db = new database;
-	$db->connect();
-	
 	echo "
 		<center><b><h1>Material Deposits Search Summary</h1></b></center><hr>
 		<h3>Total Materials</h3>
@@ -32,7 +29,4 @@
 	echo "
 		</table><hr>
 	";
-	
-	$db->disconnect();
-	unset($db);
 ?>

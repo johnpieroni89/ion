@@ -1,7 +1,4 @@
 <?php
-
-	$db = new database;
-	$db->connect();
 	
 	$facilities = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM data_signalsanalysis WHERE uid LIKE '4:%'"))["count"];
 	$ships = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT COUNT(uid) as count FROM data_signalsanalysis WHERE uid LIKE '2:%'"))["count"];

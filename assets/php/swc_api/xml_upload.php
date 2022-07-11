@@ -1,8 +1,8 @@
 <?php
+global $db;
+global $session;
 
 $len = count($_FILES['file']['tmp_name']);
-$db = new database;
-$db->connect();
 
 for($i = 0; $i < $len; $i++) {
 	$file = $_FILES['file']['tmp_name'][$i];
@@ -23,26 +23,24 @@ for($i = 0; $i < $len; $i++) {
 			}elseif($xml_file{"type"} == "export"){
 				include("xml_upload_export.php");
 			}else{
-				$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect xml format: Data must come from SWC.</div>";
+				$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect xml format: Data must come from SWC.</div>";
 			}
 			mysqli_query($db->connection, "DELETE FROM data_tracking WHERE target = ''");
 		}elseif($_FILES['file']['type'][$i] == "text/html"){
 			$html = file_get_contents($file);
 			if(preg_match("/<form id=\"inventory-form\" name=\"inventory\"/", $html)){
 				if(preg_match("/<td\s*valign=\"top\">Docked in:.*<em>.*<\/em>\s*\(.*\)<br\s*\/>/", $html) || preg_match("/<td\s*valign=\"top\">Travelling/", $html)){
-					$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - html data must not contain any records of travelling or docked entities, due to parsing errors.</div>";
+					$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - html data must not contain any records of travelling or docked entities, due to parsing errors.</div>";
 				}else{
 					include("html_parser.php");
 				}
 			}else{
-				$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect html format: Data must come from SWC.</div>";
+				$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect html format: Data must come from SWC.</div>";
 			}
 		}else{
-			$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect filetype: Only xml files are allowed.</div>";
+			$session->alert = $session->alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">".$file = $_FILES['file']['name'][$i]." - Incorrect filetype: Only xml files are allowed.</div>";
 		}
 	}
-}else{
-	$alert = $alert."<div class=\"alert alert-danger\" style=\"font-size:14px;\">No file was uploaded.</div>";
 }
 
 ?>

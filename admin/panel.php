@@ -1,8 +1,10 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id'])){ header("Location: ../index.php");}
 ?>
 
@@ -41,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         
 						<!-- Block -->
@@ -50,27 +52,6 @@
                             <div class="block-title">
                                 <h2>Content Management</h2>
                             </div>
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="content_menu.php" style="color:black;" title="Menu Links">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Menu</div>
-								<img src="../assets/img/icons/menu.png" height="60" width="60"></a>
-							</div>
-							-->
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="content_pages.php" style="color:black;" title="Web Pages">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Pages</div>
-								<img src="../assets/img/icons/pages.png" height="60" width="60"></a>
-							</div>
-							-->
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="content_seo.php" style="color:black;" title="Search Engine Optimization">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">SEO</div>
-								<img src="../assets/img/icons/SEO.png" height="60" width="60"></a>
-							</div>
-							-->
 							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
 								<a href="content_themes.php" style="color:black;" title="CSS Themes">
 								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Themes</div>
@@ -94,52 +75,7 @@
 								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Database</div>
 								<img src="../assets/img/icons/database.png" height="60" width="60"></a>
 							</div>
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="database_sql.php" style="color:black;" title="Run SQL Commands">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">SQL</div>
-								<img src="../assets/img/icons/sql.png" height="60" width="60"></a>
-							</div>
-							-->
                         </div>
-						
-						<!--
-                        <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="block-title">
-                                <h2>Email Center</h2>
-                            </div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_contacts.php" style="color:black;" title="Email Contacts">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Contacts</div>
-								<img src="../assets/img/icons/email_contacts.png" height="60" width="60"></a>
-							</div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_inbox.php" style="color:black;" title="Check Inbox">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Inbox</div>
-								<img src="../assets/img/icons/email_inbox.png" height="60" width="60"></a>
-							</div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_send.php" style="color:black;" title="Send Email">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Send</div>
-								<img src="../assets/img/icons/email_send.png" height="60" width="60"></a>
-							</div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_settings.php" style="color:black;" title="Configure Email Settings">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Settings</div>
-								<img src="../assets/img/icons/email_settings.png" height="60" width="60"></a>
-							</div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_templates.php" style="color:black;" title="Edit Email Templates">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Templates</div>
-								<img src="../assets/img/icons/email_templates.png" height="60" width="60"></a>
-							</div>
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="email_unsubscribed.php" style="color:black;" title="Unsubscribed Email Addresses">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Unsubscribed</div>
-								<img src="../assets/img/icons/email_unsubscribed.png" height="60" width="60"></a>
-							</div>
-                        </div>
-						-->
 						
 						<!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -147,20 +83,6 @@
                             <div class="block-title">
                                 <h2>Security Center</h2>
                             </div>
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="security_2fa.php" style="color:black;" title="2-Factor Authentication">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">2FA</div>
-								<img src="../assets/img/icons/2FA.png" height="60" width="60"></a>
-							</div>
-							-->
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="security_geolocation.php" style="color:black;" title="IP Geolocation API">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Geolocation</div>
-								<img src="../assets/img/icons/geolocation.png" height="60" width="60"></a>
-							</div>
-							-->
 							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
 								<a href="security_logs.php" style="color:black;" title="System & Security Logs">
 								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Activity Logs</div>
@@ -176,13 +98,6 @@
 								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Scan Filters</div>
 								<img src="../assets/img/icons/filter.png" height="60" width="60"></a>
 							</div>
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="https://www.htbridge.com/websec/" target="_blank" style="color:black;" title="Website Vulnerability Scanner">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Web Scan</div>
-								<img src="../assets/img/icons/vulnerability_scan.png" height="60" width="60"></a>
-							</div>
-							-->
 							
                         </div>
 						
@@ -212,13 +127,6 @@
 								<div class="block-title" style="font-size:14px;margin-bottom:0px;">Settings</div>
 								<img src="../assets/img/icons/site_settings.png" height="60" width="60"></a>
 							</div>
-							<!--
-							<div class="block col-xs-3 col-sm-4 col-md-3 col-lg-1" style="margin-right:5px;text-align:center;">
-								<a href="site_tos.php" style="color:black;" title="Terms of Service">
-								<div class="block-title" style="font-size:14px;margin-bottom:0px;">ToS</div>
-								<img src="../assets/img/icons/tos.png" height="60" width="60"></a>
-							</div>
-							-->
                         </div>
 						
 						<!-- Block -->

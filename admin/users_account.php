@@ -1,15 +1,13 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/pepper.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
 	if(isset($_GET['user_id']) && $_GET['user_id'] != ""){
-		$db = new database;
-		$db->connect();
 		$user_id = mysqli_real_escape_string($db->connection,$_GET['user_id']);
 		
 		if($_POST){
@@ -25,15 +23,15 @@
 			if($pass != "" && $passconfirm != ""){
 				if($pass == $passconfirm){
 					$password_salt = mysqli_real_escape_string($db->connection,randgen(32));
-					$password_hash = hash("sha256","".$password_pepper."".mysqli_real_escape_string($db->connection,$pass)."".$password_salt."");
+					$password_hash = hash("sha256","".PASSWORD_PEPPER."".mysqli_real_escape_string($db->connection,$pass)."".$password_salt."");
 					mysqli_query($db->connection,"UPDATE users SET password_hash = '$password_hash', password_salt = '$password_salt' WHERE user_id = '$user_id'");
-					$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Password has been changed.</div>";
+					$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Password has been changed.</div>";
 				}else{
-					$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Passwords don't match, password was not updated.</div>";
+					$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Passwords don't match, password was not updated.</div>";
 				}
 			}
 			
-			$alert = $alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully modified the account for ".$username."</div>";
+			$session->alert = $session->alert."<div class=\"alert alert-success\" style=\"font-size:14px;\">Successfully modified the account for ".$username."</div>";
 		}
 		
 		$user = mysqli_fetch_assoc(mysqli_query($db->connection,"SELECT * FROM users WHERE user_id = '".$user_id."'"));
@@ -81,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">

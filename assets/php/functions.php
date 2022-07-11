@@ -65,8 +65,8 @@ function geolocate($ip){
 function add_character($handle){
 	$db = new database;
 	$db->connect();
-	$handle = urlencode(str_replace(" ","+",$handle));
-	$xml = simplexml_load_string(file_get_contents("http://www.swcombine.com/ws/v1.0/handle/".$handle));
+	$handle = urlencode(str_replace(" ","%20",$handle));
+	$xml = simplexml_load_string(file_get_contents("https://www.swcombine.com/ws/v2.0/character/handlecheck/".$handle));
 	$uid = mysqli_real_escape_string($db->connection, $xml->uid);
 	$handle = mysqli_real_escape_string($db->connection, $xml->handle);
 	if(explode(":",$uid)[0] == 1){
@@ -84,8 +84,8 @@ function add_character($handle){
 
 function verify_character($handle){
 
-	$handle = urlencode(str_replace(" ","+",$handle));
-	$xml = simplexml_load_string(file_get_contents("http://www.swcombine.com/ws/v1.0/handle/".$handle));
+	$handle = urlencode(str_replace(" ","%20",$handle));
+	$xml = simplexml_load_string(file_get_contents("https://www.swcombine.com/ws/v2.0/character/handlecheck/".$handle));
 	$uid = mysqli_real_escape_string($db->connection, $xml->uid);
 	$handle = mysqli_real_escape_string($db->connection, $xml->handle);
 	if(!empty($uid)){

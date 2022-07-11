@@ -1,12 +1,11 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/session.php");
-	include("../assets/php/pepper.php");
-	include("../assets/php/acct/register.php");
+    include("../autoload.php");
 	
 	if(isset($_SESSION['user_id'])){
 		header("Location: ../index.php");
+	}
+	if(isset($_POST['register'])){
+	    $account->register();
 	}
 ?>
 
@@ -16,10 +15,10 @@
 		<div id="login-container">
 			<!-- Register Header -->
 			<h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
-				<strong><?php echo $_SESSION['site_name'];?></strong><br>
+				<strong><?php echo $site->name;?></strong><br>
 				<i class="fa fa-plus"></i> <strong>Create Account</strong>
 			</h1>
-			<?php if(isset($alert)){echo $alert;} ?>
+			<?php if(isset($session->alert)){echo $session->alert;} ?>
 			<!-- END Register Header -->
 
 			<!-- Register Form -->
@@ -84,7 +83,7 @@
 
 			<!-- Footer -->
 			<footer class="text-muted text-center animation-pullUp">
-				<?php echo $_SESSION['site_footer']; ?>
+				<?php echo $site->footer; ?>
 			</footer>
 			<!-- END Footer -->
 		</div>

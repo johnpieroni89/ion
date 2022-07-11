@@ -1,6 +1,4 @@
 <?php
-	$db = new database;
-	$db->connect();
 	echo "
 		<center><h1><b>".ucwords($owner)." (".$_POST["mapType"]." assets)</b></h1></center>
 	";

@@ -1,17 +1,14 @@
 <?php 
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
+    include("autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	
 	if ($_SESSION['user_privs']['sentientprofiles_general'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
 		header("Location: index.php");
 	}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(!empty($_POST['search']) || !empty($_GET['search'])){
 		if(isset($_POST['search'])){
@@ -29,10 +26,10 @@
 	$results_count = mysqli_num_rows(mysqli_query($db->connection,$search_string));
 
 	if(isset($_POST["createProfile"])){
-		if(add_character($_POST["handle"])){
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">A profile for ".explode(";",$_POST["handle"])[0]." has been created</div>";
+		if(Utility::add_character($_POST["handle"])){
+			$session->alert =  "<div class=\"alert alert-success\" style=\"font-size:14px;\">A profile for ".explode(";",$_POST["handle"])[0]." has been created</div>";
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".explode(";",$_POST["handle"])[0]." already exists or was not able to be validated</div>";
+			$session->alert =  "<div class=\"alert alert-warning\" style=\"font-size:14px;\">".explode(";",$_POST["handle"])[0]." already exists or was not able to be validated</div>";
 		}
 	}
 ?>
@@ -72,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block" style="overflow:hidden;">

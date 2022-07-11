@@ -1,14 +1,13 @@
 <?php 
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
 	
-	if($_POST){
-		$db = new database;
-		$db->connect();
-		
+	if($_POST){		
 		if($_POST['appMailbox']){
 			mysqli_query($db->connection,"UPDATE site_settings SET value = 1 WHERE field = 'app_mailbox'");
 			$_SESSION['app_mailbox'] = 1;
@@ -38,10 +37,7 @@
 			$_SESSION['app_usergroups'] = 0;
 		}
 		
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Module configurations have been saved.</div>";
-		
-		$db->disconnect();
-		unset($db);
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Module configurations have been saved.</div>";
 	}
 ?>
 
@@ -81,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12" style="overflow: auto;">

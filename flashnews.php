@@ -1,14 +1,14 @@
 <?php
-	error_reporting(0);
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
-	include("assets/php/session.php");
-	include("assets/php/paginator.php");
-	include("assets/php/acct/check.php");
+include("autoload.php");
+global $db;
+global $site;
+global $session;
+global $account;
+$session->check_login();
 	
-	if ($_SESSION['user_privs']['flashnews'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
-		header("Location: index.php");
-	}
+if ($_SESSION['user_privs']['flashnews'] == 0 && $_SESSION['user_privs']['admin'] == 0) {
+	header("Location: index.php");
+}
 ?>
 
 	<?php include("assets/php/_head.php"); ?>
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 						
                         <!-- Example Block -->
                         <div class="block">

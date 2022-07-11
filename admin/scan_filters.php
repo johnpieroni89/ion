@@ -1,13 +1,11 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(isset($_POST['submit'])){
 		$u_id = mysqli_real_escape_string($db->connection, $_POST['inputUser']);
@@ -16,14 +14,14 @@
 		$value = mysqli_real_escape_string($db->connection, $_POST['inputValue']);
 		if(!empty($u_id) && !empty($field) && !empty($value)){
 			mysqli_query($db->connection, "INSERT INTO users_filters (scope, u_id, type, field, value) VALUES ('".explode(":",$u_id)[0]."', '".explode(":",$u_id)[1]."', '$type', '$field', '".$value."')");
-			$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Filter has been added!</div>";
+			$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Filter has been added!</div>";
 		}else{
-			$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">You must fill out the form completely.</div>";
+			$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">You must fill out the form completely.</div>";
 		}
 	}elseif(isset($_GET['filter_delete'])){
 		$filter_id = mysqli_real_escape_string($db->connection, $_GET['filter_delete']);
 		mysqli_query($db->connection, "DELETE FROM users_filters WHERE filter_id = '".$filter_id."'");
-		$alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Filter has been deleted!</div>";
+		$session->alert = "<div class=\"alert alert-warning\" style=\"font-size:14px;\">Filter has been deleted!</div>";
 	}
 ?>
 
@@ -63,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -74,9 +72,6 @@
 							
 							</form>
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$filters_usergroups = mysqli_query($db->connection,"SELECT users_filters.*, usergroups.usergroup_name FROM users_filters LEFT JOIN usergroups ON users_filters.u_id = usergroups.usergroup_id WHERE scope = '1' AND (field LIKE '%".$search."%' OR value LIKE '%".$search."%' OR usergroup_name LIKE '%".$search."%') ORDER BY usergroup_name");

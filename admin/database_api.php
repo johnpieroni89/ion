@@ -1,23 +1,21 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(isset($_POST['user_id'])){
 		$user_id = mysqli_real_escape_string($db->connection, $_POST['user_id']);
 		$api_key = md5(time().$user_id);
 		mysqli_query($db->connection, "INSERT INTO users_api (api_key, user_id) VALUES ('$api_key', '$user_id') ON DUPLICATE KEY UPDATE api_key='$api_key'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">API key has been generated for the selected user.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">API key has been generated for the selected user.</div>";
 	}elseif(isset($_POST['delete_key'])){
 		$api_key = mysqli_real_escape_string($db->connection, $_POST['delete_key']);
 		mysqli_query($db->connection, "DELETE FROM users_api WHERE api_key='$api_key'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">API key has been deleted for the selected user.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">API key has been deleted for the selected user.</div>";
 	}
 ?>
 
@@ -57,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -66,9 +64,6 @@
                                 <h2>Automated Programming Interface</h2>
                             </div>
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$users = mysqli_query($db->connection,"SELECT users.*, users_api.api_key FROM users LEFT JOIN users_privs ON users.user_id = users_privs.user_id LEFT JOIN users_api ON users.user_id = users_api.user_id WHERE username LIKE '%".$search."%' OR first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%' OR email LIKE '%".$search."%' ORDER BY username");

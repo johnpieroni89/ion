@@ -1,33 +1,31 @@
 <?php
-	error_reporting(0);
-	include("../assets/php/database.php");
-	include("../assets/php/session.php");
-	include("../assets/php/functions.php");
-	include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
 	if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0){ header("Location: ../index.php");}
-	
-	$db = new database;
-	$db->connect();
 	
 	if(isset($_POST['subscription_add'])){
 		$id = mysqli_real_escape_string($db->connection, $_POST['subscription_add']);
 		$current = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT subscription FROM bot_subscriptions WHERE subscription_id = '$id'"))['subscription'];
 		mysqli_query($db->connection, "UPDATE bot_subscriptions SET subscription = '".($current + 30)."' WHERE subscription_id = '$id'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been granted 30 additional days.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been granted 30 additional days.</div>";
 	}elseif(isset($_POST['subscription_add_1'])){
 		$id = mysqli_real_escape_string($db->connection, $_POST['subscription_add_1']);
 		$current = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT subscription FROM bot_subscriptions WHERE subscription_id = '$id'"))['subscription'];
 		mysqli_query($db->connection, "UPDATE bot_subscriptions SET subscription = '".($current + 1)."' WHERE subscription_id = '$id'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been granted 30 additional days.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been granted 30 additional days.</div>";
 	}elseif(isset($_POST['subscription_delete'])){
 		$id = mysqli_real_escape_string($db->connection, $_POST['subscription_delete']);
 		mysqli_query($db->connection, "DELETE FROM bot_subscriptions WHERE subscription_id='$id'");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been deleted.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been deleted.</div>";
 	}elseif(isset($_POST['submit'])){
 		$handle = mysqli_real_escape_string($db->connection, $_POST['inputHandle']);
 		$discord = mysqli_real_escape_string($db->connection, $_POST['inputDiscord']);
 		mysqli_query($db->connection, "INSERT INTO bot_subscriptions (handle, discord_id) VALUES ('$handle', '$discord')");
-		$alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been added.</div>";
+		$session->alert = "<div class=\"alert alert-success\" style=\"font-size:14px;\">Subscriber has been added.</div>";
 	}
 ?>
 
@@ -67,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-						<?php if(isset($alert)){echo $alert;} ?>
+						<?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -78,9 +76,6 @@
 							
 							</form>
 							<?php
-								$db = new database;
-								$db->connect();
-								
 								if(isset($_POST['search'])){
 									$search = mysqli_real_escape_string($db->connection,$_POST['search']);
 									$subscribers = mysqli_query($db->connection,"SELECT * FROM bot_subscriptions WHERE discord_id LIKE '%".$search."%' OR handle LIKE '%".$search."%' ORDER BY handle");

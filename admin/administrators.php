@@ -1,9 +1,10 @@
 <?php 
-    error_reporting(0);
-	include("../assets/php/database.php");
-    include("../assets/php/session.php");
-    include("../assets/php/functions.php");
-    include("../assets/php/acct/check.php");
+    include("../autoload.php");
+    global $db;
+    global $site;
+    global $session;
+    global $account;
+    $session->check_login();
     if(!isset($_SESSION['user_id']) || $_SESSION['user_privs']['admin'] == 0 || $_SESSION['user_privs']['admin'] == 1){ header("Location: ../index.php");}
 ?>    
 
@@ -43,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if(isset($alert)){echo $alert;} ?>
+                        <?php if(isset($session->alert)){echo $session->alert;} ?>
 
                         <!-- Block -->
                         <div class="block col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -55,9 +56,6 @@
                                 </form>
                             </div>
                                 <?php
-                                    $db = new database;
-                                    $db->connect();
-
                                     $admin_ids = mysqli_query($db->connection,"SELECT users.user_id, users_privs.admin, users.username FROM users_privs LEFT JOIN users ON users_privs.user_id = users.user_id WHERE admin = '1' OR admin = '2' ORDER BY username");
                                     echo "<table class=\"table table-bordered table-striped table-responsive table-hover\"><tr><th>User Id</th><th>Username</th><th>Admin Level</th></tr>";
                                     while($data = mysqli_fetch_assoc($admin_ids)){

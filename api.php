@@ -1,10 +1,8 @@
 <?php
-	include("assets/php/database.php");
-	include("assets/php/functions.php");
+    include("autoload.php");
+    global $db;
 	
 	if(isset($_GET['api_key'])){
-		$db = new database;
-		$db->connect();
 		$api_key = mysqli_real_escape_string($db->connection, $_GET['api_key']);
 		$query = mysqli_real_escape_string($db->connection, $_GET['query']);
 		if($query != "logdata"){
