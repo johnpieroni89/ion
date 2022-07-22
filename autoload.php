@@ -25,4 +25,12 @@ include('assets/php/classes/SwcApiProcessor.php');
 include('assets/php/functions.php');
 include('assets/php/paginator.php');
 
+include('oauth/AuthorizationResult.php');
+include('oauth/ContentTypes.php');
+include('oauth/GrantTypes.php');
+include('oauth/OAuthToken.php');
+include('oauth/RequestMethod.php');
+include('oauth/SWC.php');
+include('oauth/SWCombineWSException.php');
+
 ?>

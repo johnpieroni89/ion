@@ -443,7 +443,7 @@ class SwcApiProcessor {
         $planets_processed = 0;
         $xml_data = SwcApiProcessor::parse_data($endpoint, $iter, 50);
         $pages_to_process = SWC_API_ENDPOINT_GALAXY_PLANETS_LIMIT_PER_SCAN / 50;
-        $timestamp = Utility::swc_time($xml_data['timestamp'], true)['timestamp'];
+        $timestamp = Utility::swc_time($xml_data['timestamp'])['timestamp'];
         
         while($pages_to_process != 0) {
             
